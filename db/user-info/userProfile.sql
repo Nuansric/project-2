@@ -1,0 +1,22 @@
+USE utilizedNeighbor_db;
+
+CREATE TABLE IF NOT EXISTS userProfile (
+userId INTEGER(10) AUTO_INCREMENT NOT NULL,
+userName VARCHAR(10) NOT NULL,
+password VARCHAR(8) NOT NULL,
+address_1 VARCHAR(20) NOT NULL,
+address_2 VARCHAR(20),
+city VARCHAR(20) NOT NULL,
+state VARCHAR(20) NOT NULL,
+zipCode VARCHAR(5) NOT NULL
+phone VARCHAR(10) NOT NULL,
+email VARCHAR(50) NOT NULL,
+longitude DOUBLE(11,8) NOT NULL,
+latitude DOUBLE(11,8) NOT NULL
+PRIMARY KEY(userId),
+UNIQUE(userName),
+UNIQUE(phone),
+UNIQUE(email)
+)
+
+

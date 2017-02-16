@@ -1,0 +1,1 @@
+//AJAX call to send text

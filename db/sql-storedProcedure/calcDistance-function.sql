@@ -1,0 +1,31 @@
+
+USE utilizedNeighbor_db;
+
+DELIMITER $$
+
+CREATE FUNCTION calcDistance(lon1 DECIMAL(11,8), lat1 DECIMAL(11,8), lon2 DECIMAL(11,8), lat2 DECIMAL(11,8)) RETURNS DECIMAL(11,8) DETERMINISTIC
+
+BEGIN
+
+DECLARE r INTEGER(4);
+DECLARE dLat DECIMAL(11,8) ;
+DECLARE dLon  DECIMAL(11,8);
+DECLARE a DECIMAL(11,8);
+DECLARE c DECIMAL(11,8);
+DECLARE d DECIMAL(11,8);
+
+SET r = 6371;
+SET dLat = (lat2-lat1) * 0.0174532925199433 ;
+SET dLon = (lon2-lon1) * 0.0174532925199433;
+SET lat1 = lat1 * 0.0174532925199433;
+SET lat2 = lat2 * 0.0174532925199433;
+
+
+SET a =  SIN(dLat/2) * SIN(dLat/2) + SIN(dLon/2) * SIN(dLon/2) * COS(lat1) * COS(lat2); 
+SET c = 2 * ATAN2(SQRT(a), SQRT(1-a)); 
+SET d = r * c;
+	
+	
+RETURN (d);
+	
+END; 

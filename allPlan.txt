@@ -1,0 +1,232 @@
+HOME PAGE
+
+1. Static home.html in public > html folder
+	
+	HTML
+		Link to "/login"
+		Link to "/signup"
+
+	CONTROLLER
+		routes 1 .get("/login" function(){sendFile login.html})
+		routes 2 .get("/signup" function(){sendFile signup.html})
+
+
+LOGIN PAGE
+
+1. Static login.html in the public > html folder
+
+	HTML
+		Link to "/login"
+		Link to "/signup"
+		Button .onclick to "/signin"
+			- jquery to grab the user input
+			- jquery .post to send input to the controller
+
+	CONTROLLER
+		routes 1 .get("/login" function(){sendFile login.html})
+		routes 2 .get("/signup" function(){sendFile signup.html})
+		routes 3 .post("/signin")function()req.body})
+			- get the username the user entered...
+
+			-sequelized findOne(userName)
+			-store the data.latitude and data.lontitude in global var lat1; and var lon1; too
+			-decrypt data.password and compare to the req.body.pass
+
+			-if matched render("search.handlebars")
+			===we should have a seperate function to populate search.handlebar 
+
+
+		
+
+SIGN UP PAGE
+
+1. Static signup.html in the public > html folder
+
+	HTML
+		Link to "/login"
+		Link to "/signup"
+		Button .onclick to "/checkusername"
+			- jquery to grab the user input
+			- jquery .post to send input to the controller
+		CLIENT's SIDE JS: Button .onclick to "/createProfile"
+			- jquery to grab the user input
+			- jquery .post to send input to the controller
+
+
+	CONTROLLER
+		routes 1 .get("/login", function(){sendFile login.html})
+		routes 2 .get("/signup", function(){sendFile signup.html})
+		routes 3 .post("/checkusername",function()req.body})
+			- get the username the user entered....
+			-sequelized findOne(req.body.userName)
+			-In case it returns error or data.length = 0,, no username found
+				-send(html) -saying username available
+			-In case it returns no error or data.length = 1,, username was found
+				-send(html) -saying username not available
+		routes 4 .post("/createProfile", function()req.body})		
+			
+			-RSA encrypt** req.body.password 
+
+			-GOOGLE findingGeo(address) function convert address to geo location... 
+			-will be turn the lat and lon value in an object 
+			-access the object and store in userProfile database
+
+				-store those in global var lat1; and var lat1; too
+			
+			CREATE USER PROFILE TO DATABASE
+
+				userProfile table
+
+					-sequelized.create -- send req.body.userName, address, phone, email
+					-if (error) -- cannot add to database,,, 
+						-send(html) -saying phone number and email can only be associate with one account
+					
+			--if all goes well (no error) do the serviceOffer.findAll to render("addService.handlebars", serviceOfferObject )
+
+ADD SERVICE PAGE
+
+	HANDLEBARS
+
+		-grap data from serviceOfferObject then loop through the object of array from the service offer database
+		-create
+		//in case of adding multiple service at onces
+			 1. drop down / check box, or whatever deems appropreaite for each for the service offer along with 2. its own description and 3. discount offer field
+			 	- give all three action="/addService" method=POST
+				-	give the service drop down or check box itself an 		id="offer-{{this.id}}" 
+				-	give the service description an id="desc-{{this.id}}" 
+				-	give the discount description an id="disc-{{this.id}}" 
+		//in case of adding 1 service at a time --should be easier and nicer looking 
+			 1. drop down / check box, or whatever deems appropreaite for each for the service offer
+			 	-	give the service drop down or check box itself an name="serviceIDoffer" value="{{this.id}}" 
+			 	-	give the service description an id="description" 
+				-	give the discount description an id="discount" 
+
+++--not quite sure how to do drop down or check box with POST in handle bar yet
+
+	CONTROLLER
+
+		- routes 1 .post("/addService", function(){})
+			//one service at a time
+				-Hopefully req.body should be like 
+					{
+						serviceIDoffer: 1,
+						decription: "nvuhdlsk",
+						discount: true
+
+					}
+				-then we do serviceOffer.create{
+					userID : var current_userID
+					serviceOffer: serviceIDoffer or 1
+					description: etc.
+					}
+				-if all goes well render(search.handlebars)
+				===we should have a seperate function to populate search.handlebar 
+		
+			//all service at a time... will be more involve bc we will try to pic the serviceid out of the id given to each...
+
+
+
+SEARCH PAGE
+
+
+	HANDLEBARS (searh.handlebars)
+		-loop through the serviceOffer Table and create
+		BUTTONs of all category of services we offer
+			- method = GET
+			- route = "/{{this.serviceName}}"
+
+	CONTROLLER
+
+		- use the var lat1 and var lon1 to pass in to the getDistance(ID, lat1, lon1);
+		- do a for loop on data.length tha tis returned by the get distance
+			ids-array.push(data[i].userID);
+
+		routes x .get("/XcategoryName", function(){
+			
+			- sequelize.findOne({where id: [ids-array]})
+
+			- grab the data returned,, store in dataObject and send in to XcategoryName.handlebars
+
+			- render("XcategoryName.handlebars, dataObject")
+
+		})
+
+
+
+NEIGHBOR OFFER PAGE 
+	
+	HANDLEBARS (XcategoryName.handlebars)
+
+		- porpulate html with dataObject from the SEARCH PAGE
+
+		loop to create 
+		{{#each}}
+			<div>
+			-userName
+			-Phone
+			-email
+			-Description
+			-Price
+			-Discount
+			</div>
+		{{/each}}
+
+
+
+
+PROFILE PAGE
+	
+	CONTROLLER
+
+		route 1 .get("/profile", function(){
+
+			-sequelize.findOne({where id: current_userID})
+			- store data returned in profileData
+			render(profile.handlebars, profileData)
+		})
+
+	HANDLEBARS(profile.handlebars)
+
+		- populate data with profileData sent
+
+
+
+
+main.handlebars
+
+	HANDLEBARS
+
+		-will be use as template for the 
+			1. search page
+			2-x category pages
+
+		- nav bar with the view profile and sign out
+
+		-View Profile links to ("/profile")
+		-Service Page  links to ("/addService")
+		-Sign out links to ("/signout")
+		-Search links to ("/search")
+
+
+
+	CONTROLLER
+
+		--empty all the info
+		routes 1 .post("/signout", function(){
+
+			var current_userID = "";
+			var lon1 = "";
+			var lat1 = "";
+
+		sendFile(home.html)
+
+		})
+
+
+GoogleAPI in config
+
+	-Ajax call to google function within findingGeo
+	-findingGeo function return object contain lattitude and lontitude
+
+	export the function findingGeo to the controller.js
+
