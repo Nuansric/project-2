@@ -45,10 +45,9 @@ var routes = require("./controller/controller.js");
 
 app.use("/" , routes);
 
-db.sequelize.sync();
-
-// Starts the server to begin listening
-// =============================================================
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });
+

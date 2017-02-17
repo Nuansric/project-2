@@ -46,33 +46,59 @@ userId:{
 userName: {
     type: DataTypes.STRING
     , unique: true
+    , allowNull: false,
+      // len is a validation that checks that our todo is between 1 and 140 characters
+      validate: {
+        len: [1, 8]
+      }
 
   },
 password: {
     type: DataTypes.STRING
+     , allowNull: false,
+      // len is a validation that checks that our todo is between 1 and 140 characters
+      validate: {
+        len: [1, 8]
+      }
   },
 address_1: {
     type: DataTypes.STRING
+     , allowNull: false,
   },
 address_2: {
     type: DataTypes.STRING
   },
 city: {
     type: DataTypes.STRING
+     , allowNull: false,
   },
 state: {
     type: DataTypes.STRING
+     , allowNull: false
   },
 zipCode: {
     type: DataTypes.STRING
+     , allowNull: false,
+     validate: {
+        len: [5, 5]
+      }
   },
 phone: {
     type: DataTypes.STRING
-     , unique: true
+    , unique: true
+    , allowNull: false,
+    validate: {
+        len: [10, 10]
+      }
   },
 email: {
     type: DataTypes.STRING
      , unique: true
+    , allowNull: false,
+    validate: {
+        len: [1, 50]
+      }
+
   },
 longitude: {
     type: DataTypes.DECIMAL
