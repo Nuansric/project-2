@@ -89,12 +89,14 @@ ADD SERVICE PAGE
 
 		-grap data from serviceOfferObject then loop through the object of array from the service offer database
 		-create
+
 		//in case of adding multiple service at onces
 			 1. drop down / check box, or whatever deems appropreaite for each for the service offer along with 2. its own description and 3. discount offer field
 			 	- give all three action="/addService" method=POST
-				-	give the service drop down or check box itself an 		id="offer-{{this.id}}" 
+				-	give the service drop down or check box itself an id="offer-{{this.id}}" 
 				-	give the service description an id="desc-{{this.id}}" 
 				-	give the discount description an id="disc-{{this.id}}" 
+				
 		//in case of adding 1 service at a time --should be easier and nicer looking 
 			 1. drop down / check box, or whatever deems appropreaite for each for the service offer
 			 	-	give the service drop down or check box itself an name="serviceIDoffer" value="{{this.id}}" 

@@ -7,10 +7,6 @@ userId:{
   , allowNull: false
 
 },
-serviceID: {
-    type: DataTypes.STRING
-    , allowNull: false
-  },
 description: {
     type: DataTypes.STRING
     , allowNull: false,
@@ -20,12 +16,29 @@ description: {
   },
 discount: {
     type: DataTypes.BOOLEAN
-      , allowNull: false
+    , allowNull: false
   }
 }, {
   timestamps: false
 
-});
+},
+{
+      // We're saying that we want our Author to have Posts
+      classMethods: {
+        associate: function(models) {
+          // An Author (foreignKey) is required or a Post can't be made
+          userService.belongsTo(models.serviceOffer, {
+            foreignKey: {
+              allowNull: false
+            }
+          });
+        }
+      }
+    }
+
+
+
+);
 
 return userService;
 
