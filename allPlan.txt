@@ -6,7 +6,7 @@ HOME PAGE
 		Link to "/login"
 		Link to "/signup"
 
-	CONTROLLER
+	CONTROLLER.JS
 		routes 1 .get("/login" function(){sendFile login.html})
 		routes 2 .get("/signup" function(){sendFile signup.html})
 
@@ -20,9 +20,9 @@ LOGIN PAGE
 		Link to "/signup"
 		Button .onclick to "/signin"
 			- jquery to grab the user input
-			- jquery .post to send input to the controller
+			- jquery .post to send input to the CONTROLLER.JS
 
-	CONTROLLER
+	CONTROLLER.JS
 		routes 1 .get("/login" function(){sendFile login.html})
 		routes 2 .get("/signup" function(){sendFile signup.html})
 		routes 3 .post("/signin")function()req.body})
@@ -47,13 +47,13 @@ SIGN UP PAGE
 		Link to "/signup"
 		Button .onclick to "/checkusername"
 			- jquery to grab the user input
-			- jquery .post to send input to the controller
+			- jquery .post to send input to the CONTROLLER.JS
 		CLIENT's SIDE JS: Button .onclick to "/createProfile"
 			- jquery to grab the user input
-			- jquery .post to send input to the controller
+			- jquery .post to send input to the CONTROLLER.JS
 
 
-	CONTROLLER
+	CONTROLLER.JS
 		routes 1 .get("/login", function(){sendFile login.html})
 		routes 2 .get("/signup", function(){sendFile signup.html})
 		routes 3 .post("/checkusername",function()req.body})
@@ -105,7 +105,7 @@ ADD SERVICE PAGE
 
 ++--not quite sure how to do drop down or check box with POST in handle bar yet
 
-	CONTROLLER
+	CONTROLLER.JS
 
 		- routes 1 .post("/addService", function(){})
 			//one service at a time
@@ -135,9 +135,9 @@ SEARCH PAGE
 		-loop through the serviceOffer Table and create
 		BUTTONs of all category of services we offer
 			- method = GET
-			- route = "/{{this.serviceName}}"
+			- route = "/service/{{this.serviceId}}"
 
-	CONTROLLER
+	CONTROLLER.JS
 
 		- use the var lat1 and var lon1 to pass in to the getDistance(ID, lat1, lon1);
 		- do a for loop on data.length tha tis returned by the get distance
@@ -178,7 +178,7 @@ NEIGHBOR OFFER PAGE
 
 PROFILE PAGE
 	
-	CONTROLLER
+	CONTROLLER.JS
 
 		route 1 .get("/profile", function(){
 
@@ -187,9 +187,14 @@ PROFILE PAGE
 			render(profile.handlebars, profileData)
 		})
 
+		route 2 .delete("/deleteProfile", function(){}
+			- sequelize.destroy({where id: current_userID})
+
+
 	HANDLEBARS(profile.handlebars)
 
 		- populate data with profileData sent
+		-button "Delete Account" method DELETE
 
 
 
@@ -211,7 +216,7 @@ main.handlebars
 
 
 
-	CONTROLLER
+	CONTROLLER.JS
 
 		--empty all the info
 		routes 1 .post("/signout", function(){
@@ -230,5 +235,39 @@ GoogleAPI in config
 	-Ajax call to google function within findingGeo
 	-findingGeo function return object contain lattitude and lontitude
 
-	export the function findingGeo to the controller.js
+	export the function findingGeo to the CONTROLLER.JS.js
+
+
+
+SEPERATE FUNCTION
+
+	CONTROLLER.JS
+
+		1. Populating Search Page
+
+			.get("/search",function(){
+
+				serviceOffer.findAll({}).then(function(data){})
+
+				.render("search.handlebar", data)
+
+			})
+
+	RSA CONTROLLER
+
+		1.function for encryption and export to controller.js
+		2.
+
+	CONFIG
+
+		1. Google Ajax to calculate the geo loacation
+			export function in to CONTROLLER.JS
+
+	MODEL
+
+		1. getDistance function
+			export function in to CONTROLLER.JS
+
+
+
 

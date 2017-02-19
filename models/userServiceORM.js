@@ -34,7 +34,20 @@ discount: {
           });
         }
       }
+    },
+
+    classMethods: {
+        associate: function(models) {
+          // An Author (foreignKey) is required or a Post can't be made
+          userService.belongsTo(models.userProfile, {
+            foreignKey: {
+              allowNull: false
+            }
+          });
+        }
+      }
     }
+
 
 
 

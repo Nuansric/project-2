@@ -13,7 +13,7 @@ serviceName: {
 }, {
   timestamps: false
 
-}
+},
 {
       // We're saying that we want our Author to have Posts
       classMethods: {
