@@ -1,148 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Resi Bootstrap Template</title>
+    <title>Login</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/responsive-slider.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/animate.css">
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link href="css/style.css" rel="stylesheet">	
+    <link href="css/responsive-slider.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link href="css/style.css" rel="stylesheet">    
     <!-- =======================================================
         Theme Name: Resi
         Theme URL: https://bootstrapmade.com/resi-free-bootstrap-html-template/
         Author: BootstrapMade
         Author URL: https://bootstrapmade.com
-    ======================================================= -->
-  </head>
-  <body>
-    <header>
-		<div class="container">
-			<div class="row">
-				<nav class="navbar navbar-default" role="navigation">
-					<div class="container-fluid">
-						<div class="navbar-header">
-							<div class="navbar-brand">
-								<a href="index.html"><h1>Resi</h1></a>
-							</div>
-						</div>
-						<div class="menu">
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation"><a href="/login">Login</a></li>
-								<li role="presentation"><a href="/signup">Sign Up</a></li>
-												
-							</ul>
-						</div>
-					</div>			
-				</nav>
-			</div>
-		</div>
-	</header>
-	
-	<div class="container">
-		<div class="col-lg-6">
-		    <div id="sendmessage">Your message has been sent. Thank you!</div>
-            <div id="errormessage"></div>
-            <form action="" method="post" role="form" class="contactForm">
-                <div class="form-group">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                    <div class="validation"></div>
+        ======================================================= -->
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="row">
+                    <nav class="navbar navbar-default" role="navigation">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <div class="navbar-brand">
+                                    <a href="home.html"><h1>The Neighbor Network</h1></a>
+                                </div>
+                            </div>
+                            <div class="menu">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation"><a href="home.html">Home</a></li>
+                                    <li role="presentation"><a href="signup.html">Signup</a></li>
+                                    <!--    <li role="presentation"><a href="blog.html">Blog</a></li>-->
+                                    <!--    <li role="presentation"><a href="portfolio.html">Portfolio</a></li>-->
+                                    <!--    <li role="presentation" class="active"><a href="contact.html">Contact</a></li> -->                  
+                                </ul>
+                            </div>
+                        </div>          
+                    </nav>
                 </div>
-                <div class="form-group">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                    <div class="validation"></div>
+            </div>
+        </header>
+<!--====================================LOGIN BOX==========================================-->
+        <div class="container">    
+            <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+                <div class="panel panel-info" >
+                    <div class="panel-heading">
+                        <div class="panel-title">Login</div>
+                        <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>
+                    </div>     
+
+                    <div style="padding-top:30px" class="panel-body" >
+
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+
+                        <form id="loginform" class="form-horizontal" role="form">
+
+                            <div style="margin-bottom: 25px" class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email">                                        
+                            </div>
+
+                            <div style="margin-bottom: 25px" class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
+                            </div>
+
+
+
+                            <div class="input-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <div style="margin-top:10px" class="form-group">
+                                <!-- Button -->
+
+                                <div class="col-sm-12 controls">
+                                    <a id="btn-login" href="#" class="btn btn-default">Login  </a>
+                                    <!--<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-12 control">
+                                    <div style="border-top: 1px solid #6d9c91; padding-top:15px; font-size:85%" >
+                                        Don't have an account! 
+                                        <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">
+                                            Sign Up Here
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>    
+                        </form>     
+
+
+
+                    </div>                     
+                </div>  
+            </div>
+    <!--======================================= SIGN UP BOX=========================================== -->
+        <div id="signupbox" style="display:none; margin-top:50px solid #6d9c91;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="panel-title">Sign Up</div>
+                        <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Login</a></div>
+                    </div>  
+                    <div class="panel-body" >
+                        <form id="signupform" class="form-horizontal" role="form">
+
+                            <div id="signupalert" style="display:none" class="alert alert-danger">
+                                <p>Error:</p>
+                                <span></span>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="email" class="col-md-3 control-label">Email</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="email" placeholder="Email Address">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="firstname" class="col-md-3 control-label">First Name</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="firstname" placeholder="First Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname" class="col-md-3 control-label">Last Name</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="lastname" placeholder="Last Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-md-3 control-label">Password</label>
+                                <div class="col-md-9">
+                                    <input type="password" class="form-control" name="passwd" placeholder="Password">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="icode" class="col-md-3 control-label">Phone Number</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="pnumber" placeholder="Phone Number">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="icode" class="col-md-3 control-label">Address</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="address" placeholder="Address">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="icode" class="col-md-3 control-label">Zip Code</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="zcode" placeholder="Zip Code">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <!-- Button -->                                        
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button id="btn-signup" type="button" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
+                                    <span style="margin-left:8px;"></span>  
+                                </div>
+                            </div>
+
+                            <div style="border-top: 1px solid #6d9c91; padding-top:20px"  class="form-group">
+
+                                    <!--<div class="col-md-offset-3 col-md-9">
+                                    <button id="btn-fbsignup" type="button" class="btn btn-primary"><i class="icon-facebook"></i>   Sign Up with Facebook</button>-->
+                              </div>                                           
+
+                            </div>
+
+
+
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                    <div class="validation"></div>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                    <div class="validation"></div>
-                </div>
+
+
+
                 
-                <div class="text-center"><button type="submit" class="btn btn-default">Send Message</button></div>
-            </form>
-            
-		</div>
-		<div class="col-lg-6">
-			<div class="map">
-				<div id="google-map" data-latitude="40.713732" data-longitude="-74.0092704"></div>
-			</div>
-		</div>
-	</div>	
-	
-		<address>
-			<strong>
-			Written by:<a href="https://bootstrapmade.com" target="_blank">Gampang Prasetyo</a><br>
-			Visit us at:<br>
-			<a href="https://bootstrapmade.com" target="_blank">http://bootstrapmade.com</a><br>
-			Box 564, Disneyland<br>
-			USA<br>
-			</strong>
-		</address> 
-	
-	<hr>
-	
-	<!--start footer-->
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="widget">
-						<h5 class="widgetheading">Nam libero tempore</h5>						
-						<p>soluta nobis est eligendi optio cumque nihil impedit quo minus id
-						excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
-						
-						</p>						
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="widget">
-						<h5 class="widgetheading">Pages</h5>
-						<ul class="link-list">
-							<li><a href="#">Press release</a></li>
-							<li><a href="#">Terms and conditions</a></li>
-							<li><a href="#">Privacy policy</a></li>
-							<li><a href="#">Career center</a></li>
-							<li><a href="#">Contact us</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="widget">
-						<h5 class="widgetheading">Latest posts</h5>
-						<ul class="link-list">
-							<li><a href="#">Lorem ipsum dolor sit amet</a></li>
-							<li><a href="#">Pellentesque et pulvinar enim</a></li>
-							<li><a href="#">Natus error sit voluptatem </a></li>
-						</ul>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-				
-		<div class="sub-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<ul class="social-network">
-							<li><a href="#" data-placement="top" title="Facebook"><i class="fa fa-facebook fa-1x"></i></a></li>
-							<li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter fa-1x"></i></a></li>
-							<li><a href="#" data-placement="top" title="Linkedin"><i class="fa fa-linkedin fa-1x"></i></a></li>
-							<li><a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest fa-1x"></i></a></li>
-							<li><a href="#" data-placement="top" title="Google plus"><i class="fa fa-google-plus fa-1x"></i></a></li>
-						</ul>
-					</div>
-					<div class="col-lg-12">
-						<div class="copyright">
-							<p>&copy;Resi Theme - All right reserved.</p>
-                            <div class="credits">
+            </div> 
+        </div> 
+
+        <!--start footer-->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="widget">
+                            <h5 class="widgetheading">Nam libero tempore</h5>                       
+                            <p>soluta nobis est eligendi optio cumque nihil impedit quo minus id
+                                excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
+
+                            </p>                        
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="widget">
+                            <h5 class="widgetheading">Pages</h5>
+                            <ul class="link-list">
+                                <li><a href="#">Press release</a></li>
+                                <li><a href="#">Terms and conditions</a></li>
+                                <li><a href="#">Privacy policy</a></li>
+                                <li><a href="#">Career center</a></li>
+                                <li><a href="#">Contact us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="widget">
+                            <h5 class="widgetheading">Latest posts</h5>
+                            <ul class="link-list">
+                                <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                                <li><a href="#">Pellentesque et pulvinar enim</a></li>
+                                <li><a href="#">Natus error sit voluptatem </a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="sub-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <ul class="social-network">
+                                <li><a href="#" data-placement="top" title="Facebook"><i class="fa fa-facebook fa-1x"></i></a></li>
+                                <li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter fa-1x"></i></a></li>
+                                <li><a href="#" data-placement="top" title="Linkedin"><i class="fa fa-linkedin fa-1x"></i></a></li>
+                                <li><a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest fa-1x"></i></a></li>
+                                <li><a href="#" data-placement="top" title="Google plus"><i class="fa fa-google-plus fa-1x"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="copyright">
+                                <p>&copy;Resi Theme - All right reserved.</p>
+                                <div class="credits">
                                 <!-- 
                                     All the links in the footer should remain intact. 
                                     You can delete the links only if you purchased the pro version.
@@ -151,23 +261,23 @@
                                 -->
                                 <a href="https://bootstrapmade.com/free-one-page-bootstrap-themes-website-templates/">One Page Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
                             </div>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!--end footer-->
-	
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--end footer-->
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-2.1.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="https://maps.google.com/maps/api/js?sensor=true"></script>
-	<script src="js/responsive-slider.js"></script>
-	<script src="js/wow.min.js"></script>
-	<script>wow = new WOW({}).init();</script>
+    <script src="js/responsive-slider.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script>wow = new WOW({}).init();</script>
     <script>
         jQuery(document).ready(function( $ ) {
             //Google Map
