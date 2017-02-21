@@ -3,7 +3,7 @@ var userService = sequelize.define("userService", {
 
 
 userId:{
-  type: DataTypes.INTEGER,
+  type: DataTypes.INTEGER
   , allowNull: false
 
 },
@@ -32,11 +32,8 @@ discount: {
               allowNull: false
             }
           });
-        }
-      }
-    },
-
-    classMethods: {
+        },
+     
         associate: function(models) {
           // An Author (foreignKey) is required or a Post can't be made
           userService.belongsTo(models.userProfile, {
