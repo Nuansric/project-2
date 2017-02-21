@@ -8,10 +8,16 @@ receiverId:{
 senderId: {
     type: DataTypes.INTEGER
   },
-
- message: {
+message: {
     type: DataTypes.TEXT
+  },
+receiverName: {
+    type: DataTypes.STRING
+  },
+senderName: {
+    type: DataTypes.STRING
   }
+
 });
 
 return messages;

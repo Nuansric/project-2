@@ -1,27 +1,29 @@
 {
-  "name": "project2",
+  "name": "project-2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Nuansric/Project2.git"
+    "url": "git+https://github.com/Nuansric/project-2.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Nuansric/Project2/issues"
+    "url": "https://github.com/Nuansric/project-2/issues"
   },
-  "homepage": "https://github.com/Nuansric/Project2#readme",
+  "homepage": "https://github.com/Nuansric/project-2#readme",
   "dependencies": {
     "authy-client": "^1.0.10",
     "body-parser": "^1.16.1",
     "crypto": "0.0.3",
     "express": "^4.14.1",
     "express-handlebars": "^3.0.0",
+    "fs": "0.0.1-security",
     "mysql": "^2.13.0",
     "path": "^0.12.7",
     "qs": "^6.3.1",
