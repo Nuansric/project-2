@@ -49,7 +49,7 @@ userName: {
     , allowNull: false,
       // len is a validation that checks that our todo is between 1 and 140 characters
       validate: {
-        len: [1, 8]
+        len: [5, 8]
       }
 
   },
@@ -58,7 +58,15 @@ password: {
      , allowNull: false,
       // len is a validation that checks that our todo is between 1 and 140 characters
       validate: {
-        len: [1, 8]
+        len: [5, 8]
+      }
+  },
+firstName: {
+    type: DataTypes.STRING
+     , allowNull: false,
+      // len is a validation that checks that our todo is between 1 and 140 characters
+      validate: {
+        len: [1, 20]
       }
   },
 address_1: {
@@ -82,6 +90,10 @@ zipCode: {
      validate: {
         len: [5, 5]
       }
+  },
+country: {
+    type: DataTypes.STRING
+     , allowNull: false
   },
 phone: {
     type: DataTypes.STRING
