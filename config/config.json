@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "Tantdyalfsw#4",
+=======
+    "password": "kalowanebli",
+>>>>>>> 5e05413cce1a67e592bb2744311829942496edf7
     "database": "utilizedNeighbor_db",
     "host": "127.0.0.1",
     "dialect": "mysql"

@@ -38,4 +38,8 @@ jspm_packages
 
 authyConfig.js
 
+<<<<<<< HEAD
 config/config.json
+=======
+.DS_Store
+>>>>>>> 5e05413cce1a67e592bb2744311829942496edf7
