@@ -53,25 +53,7 @@ $("#checkUsername").on("click", function(){
 });
 	$("#createProfile").on("click", function(){
 
-		if(validateUserInput() === true){
-
-		console.log("hey0")
-		var phoneObj ={ phone: $("#phone").val().trim()};
-		console.log("hey1");
-
-		$.post("/requestSms", phoneObj, function(data){
-
-			console.log("hey"+ data);
-
-			if(data){
-				if(data.success){
-			
-
-		$("#matchedResult").modal();
-		
-		$("#tokenVerification").on("click", function(){
-		
-			var newUser = {
+		var newUser = {
 				userName: $("#userName").val().trim(),
 				password: $("#password").val().trim(),
 				firstName: $("#firstName").val().trim(),
@@ -82,12 +64,40 @@ $("#checkUsername").on("click", function(){
 				country: $("#country").val().trim(),
 				phone: $("#phone").val().trim(),
 				email: $("#email").val().trim(),
-				token: $("#token").val().trim()
-				}
+				token: ""			}
+
+
+		if(validateUserInput() === true){
+
+		var phoneObj ={ phone: $("#phone").val().trim()};
+	
+
+		$.post("/requestSms", phoneObj, function(data){
+
+			//if sms successfully sent!
+		
+			if(data){
+
+				console.log("inside if data" + (data));
+
+				if(data.success){
+
+					console.log("inside if data.success" + (data.success));
+			
+
+		$("#verifyPhoneToken").modal();
+
+		
+		$("#tokenVerification").on("click", function(){
+
+			newUser.token = $("#token").val().trim();
+			
+			console.log("afrer token" + newUser);
 
 			$.post("/createProfile", newUser, function(data){
+				console.log("/createProfile");
 
-				if(data.error){
+				if(data.error !==  null || data.error !== undefined){
 
 					$("#isRightPhone").html(data.error);
 				}

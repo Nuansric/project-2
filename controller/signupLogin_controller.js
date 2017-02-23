@@ -91,18 +91,23 @@ verifyPhoneToken : function (req, res/*, phone, token*/){
         phoneReg.verifyPhoneToken(phone_number, country_code, token, function (err, response) {
             if (err) {
                 console.log('error creating phone reg request', err);
-                res.status(500).json({error: err.message});
+                res.json({error: err.message});
                 
             } else {
                     console.log('Confirm phone success confirming code: ', response);
                     if (response.success) {
                         
-                        // var address = req.body.address_1 + ", "+ req.body.city +", "+ req.body.state + ", " + req.body.zipCode + ", " + req.body.country;
-                        // var addressFixed = address.replace(/\s+/g,"+");
+                        var address = req.body.address_1 + ", "+ req.body.city +", "+ req.body.state + ", " + req.body.zipCode + ", " + req.body.country;
+                        var addressFixed = address.replace(/\s+/g,"+");
 
-                        // var geoCode = findGeoCode(addressFixed);
+                        var latLng = geocode(addressFixed, function(res){
 
-                        this.loginSignup.createNewProfile(req, res/*, geoCode*/);
+                            var coordinates = res;
+                            return coordinates;
+
+                        });
+
+                        this.createNewProfile(req, res, latLng);
 
                             // if (profileCreated){
 
@@ -114,14 +119,14 @@ verifyPhoneToken : function (req, res/*, phone, token*/){
                         }else {
                     	
                         console.log('Failed in Confirm Phone request body: ', response.message);
-                        res.status(500).json({error: response.message});
+                        res.json({error: response.message});
                         }
             }
         });
     }
 },
 
-createNewProfile : function(req, res/*, geoCode*/){
+createNewProfile : function(req, res, latLng){
 	var user = req.body;
 
 	db.userProfile.create({
@@ -136,8 +141,8 @@ createNewProfile : function(req, res/*, geoCode*/){
 		country: user.country,
 		phone: user.phone,
 		email: user.email,
-		longitude: geoCode.longitude,
-		latitude: geoCode.latitude
+		longitude: latLng.longitude,
+		latitude: latLng.latitude
 	}).then(function(err, user) {
 
 		 if (err) {
