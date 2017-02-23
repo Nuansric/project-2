@@ -58,7 +58,7 @@ var lon1;
 // 		isCreated: true
 // 	}
 
-// 	var address = req.bod.address_1 + req.body.city + req.body.state + req.body.zipCode + req.body.country;
+// 	var address = req.bod.address_1 + "+" + req.body.city + "+" + req.body.state + "+" + req.body.zipCode + "+" + req.body.country;
 
 // 	var requestText = loginSignup.requestPhoneVerification(req, res, req.body.phone);
 
