@@ -51,6 +51,7 @@ app.set("view engine", "handlebars");
 // =============================================================
 require("./routes/signupLoginRoutes.js")(app);
 require("./routes/searchRoutes.js")(app);
+require("./routes/addServiceRoutes.js")(app);
 
 
 db.sequelize.sync({ force: true }).then(function() {

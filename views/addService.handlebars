@@ -1,0 +1,32 @@
+<h1>Add Service</h1>
+
+
+<form action="/addedService" method="POST">
+<select data-placeholder="" class="userInput" name="serviceId">
+<option value="">Select Service Category</option>
+ {{#each services}}
+      
+      <option value="{{this.dataValues.serviceId}}">{{this.dataValues.serviceName}}</option>
+            
+  {{/each}}
+</select>
+
+<div class="form-group">
+    <label for="des">Service Description</label>
+    <input type="text" id="des" name="description">
+ </div>
+
+ <div class="form-group">
+    <label for="slee">Are you offering discount?</label><br>
+    <input type="radio" name="discount" value="1" checked>YES<br>
+    <input type="radio" name="discount" value="0">NO
+  </div>
+
+
+<br><br>
+
+
+<button type="submit" class="btn btn-lg btn-default" >Add My Service</button>
+
+
+</form>

@@ -1,4 +1,4 @@
-var addServiceController = require("../controller/search_controller");
+var searchController = require("../controller/search_controller");
 
 //export all routes into server.js
 module.exports = function(app){
@@ -10,7 +10,9 @@ module.exports = function(app){
 //     res.sendFile(path.join(__dirname + "/../public/login.html"));
 // });	
 
-app.get("/search", addServiceController.renderSearchBar);
+app.get("/search", searchController.renderSearchBar);
+
+app.post("/service", searchController.findService);
 
 
 
