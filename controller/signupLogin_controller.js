@@ -34,20 +34,16 @@ checkUserName : function(req, res){
 
             db.userProfile.findAll({
                  where: {userName: req.body.userName}
-            }).then(function(err, user){
+            }).then(function(user){
 
                 if (user == null || user == undefined ) {
 
                          res.json({error: "Username is Available!"});
                          
-                }else if (err) {
-                    res.json({error: "There is an error, please try again."});
-                    
+              
                  }
                 else if (user){
                     
-                    createSession(req, res, user);
-
                     res.json({error: "Username is not available! Please pick a new one!"});
                     
                 }
@@ -61,10 +57,10 @@ hashPW : function(pwd) {
             return crypto.createHash('sha256').update(pwd).digest('base64').toString();
         },
 
-createNewProfile : function(user, coordinates, cb){
+createNewProfile : function(req, res, cb){
 
     console.log("in createNewProfile");
-    // var user = req.body;
+    var user = req.body;
 
     // console.log(req.body)
 
@@ -106,14 +102,15 @@ createNewProfile : function(user, coordinates, cb){
         country: user.country,
         phone: user.phone,
         email: user.email,
-        longitude: coordinates.longitude,
-        latitude: coordinates.latitude
+        longitude: -95.543191,
+        latitude: 29.558719
     }).then(function(user) {
          
          cb(user);
        
     }).catch(function(error){
         console.log(error);
+        cb({error: error.errors[0].message});
     })
 },
 
@@ -131,7 +128,7 @@ requestPhoneVerification : function (req, res/*, phone*/) {
             if (err) {
                 console.log('error creating phone reg request', err);
                 // res.status(500).json(err);
-                res.json(err);
+                res.json({error: err.message});
                 // isSuccess = false;
             } else {
                 console.log('Success register phone API call: ', response);
@@ -169,10 +166,9 @@ verifyPhoneToken : function (req, res){
                     console.log('Confirm phone success confirming code: ', response);
                     if (response.success) {
                         
-                        // var address = req.body.address_1 + ", "+ req.body.city +", "+ req.body.state + ", " + req.body.zipCode + ", " + req.body.country;
+                                               // var address = req.body.address_1 + ", "+ req.body.city +", "+ req.body.state + ", " + req.body.zipCode + ", " + req.body.country;
                         // var addressFixed = address.replace(/\s+/g,"+");
 
-                        // var geoCode = findGeoCode(addressFixed);
 
                     //     geocode(addressFixed, function(res){
                     //             console.log(req.session);
@@ -207,23 +203,25 @@ verifyPhoneToken : function (req, res){
   
                     // });
 
-                          signupLogin.createNewProfile(req.body, function(user){
+
+                          signupLogin.createNewProfile(req, res, function(user){
                                 
                                 
-                                     if(user){
+                                     if(!user.error){
 
                                         console.log("before rendering");
 
-                                        console.log(req.session);
+                                        // console.log(req.session);
                                         
-                                        createSession(req, res, user);
+                                        // createSession(req, res, user);
 
-                                        console.log(req.session.userId);
+                                        // console.log(req.session.userId);
 
                                         res.render("landing");
                                         
-                                     }else if (user == null || user == undefined) {
-                                        res.json({error: "Your Information is invalid!"});
+                                     }else if (user.error) {
+                                        console.log(user.error);
+                                        res.json({error: user.error});
                                         
                                      }
 
@@ -306,6 +304,10 @@ loggedIn : function(req, res){
 
         //     res.status(500).json({error: "An error occur, please try again!"});
         // }
+    }).catch(function(error){
+        console.log(error);
+        res.json({error: error.errors.message});
+
     });
     
 }
@@ -325,4 +327,3 @@ function createSession(req, res, user) {
 }
 
 module.exports = signupLogin;
-

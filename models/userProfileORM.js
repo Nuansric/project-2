@@ -49,17 +49,17 @@ userName: {
     , allowNull: false,
       // len is a validation that checks that our todo is between 1 and 140 characters
       validate: {
-        len: [5, 8]
+        len: [5, 15]
       }
 
   },
 password: {
     type: DataTypes.STRING
-     , allowNull: false,
+     , allowNull: false
       // len is a validation that checks that our todo is between 1 and 140 characters
-      validate: {
-        len: [5, 8]
-      }
+      //, validate: {
+      //   len: [5, 8]
+      // }
   },
 firstName: {
     type: DataTypes.STRING
