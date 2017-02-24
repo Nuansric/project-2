@@ -61,7 +61,7 @@ hashPW : function(pwd) {
             return crypto.createHash('sha256').update(pwd).digest('base64').toString();
         },
 
-createNewProfile : function(user, cb){
+createNewProfile : function(user, coordinates, cb){
 
     console.log("in createNewProfile");
     // var user = req.body;
@@ -106,8 +106,8 @@ createNewProfile : function(user, cb){
         country: user.country,
         phone: user.phone,
         email: user.email,
-        longitude: -95.543191,
-        latitude: 29.558719
+        longitude: coordinates.longitude,
+        latitude: coordinates.latitude
     }).then(function(user) {
          
          cb(user);
@@ -173,6 +173,39 @@ verifyPhoneToken : function (req, res){
                         // var addressFixed = address.replace(/\s+/g,"+");
 
                         // var geoCode = findGeoCode(addressFixed);
+
+                    //     geocode(addressFixed, function(res){
+                    //             console.log(req.session);
+                     
+                                
+  
+                    //                 var coordinates = res;
+
+                    //                    signupLogin.createNewProfile(req.body, coordinates, function(user){
+                                
+                                
+                    //                  if(user){
+
+                    //                     console.log("before rendering");
+
+                    //                     console.log(req.session);
+                                        
+                    //                     createSession(req, res, user);
+
+                    //                     console.log(req.session.userId);
+
+                    //                     res.render("landing");
+                                        
+                    //                  }else if (user == null || user == undefined) {
+                    //                     res.json({error: "Your Information is invalid!"});
+                                        
+                    //                  }
+
+                    //       });
+                              
+                                
+  
+                    // });
 
                           signupLogin.createNewProfile(req.body, function(user){
                                 
