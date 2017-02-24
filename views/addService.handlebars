@@ -1,12 +1,24 @@
 <h1>Add Service</h1>
 
+  <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Add a Service
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+
+    {{#each services}}
+    <li value="{{this.dataValues.serviceId}}">{{this.dataValues.serviceName}}</li>
+
+    {{/each}}
+  </ul>
+</div>
+
 
 <form action="/addedService" method="POST">
 <select data-placeholder="" class="userInput" name="serviceId">
-<option value="">Select Service Category</option>
- {{#each services}}
+  <option value="">Select Service Category</option>
+  {{#each services}}
       
-      <option value="{{this.dataValues.serviceId}}">{{this.dataValues.serviceName}}</option>
+  <option value="{{this.dataValues.serviceId}}">{{this.dataValues.serviceName}}</option>
             
   {{/each}}
 </select>

@@ -20,9 +20,22 @@ renderAddService : function(req, res){
 },
 
 addServiceDb : function(req, res){
+	var serviceId = req.body.serviceId;
+	var description = req.body.description;
+	var discount = req.body.discount;
 
-var serviceId = req.body.serviceId;
-console.log(req.body);
+	db.userService.create({
+		userId: serviceId,
+		description: description,
+		discount: discount
+	}).then(function(err, user){
+		if(err){
+			throw err;
+		}
+		console.log(req.body);
+	});
+	
+	
 
 
 }

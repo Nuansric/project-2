@@ -31,4 +31,9 @@ app.post("/requestSms", signupLoginController.requestPhoneVerification);
 
 app.post("/createProfile", signupLoginController.verifyPhoneToken);
 
+
+app.get("/landing", function(req, res){
+    res.render("landing");
+})
 }
+
