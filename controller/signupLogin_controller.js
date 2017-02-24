@@ -5,6 +5,7 @@ var config = require('../config/authyConfig.js');
 var qs = require('qs');
 var request = require('request');
 var phoneReg = require('../public/lib/phone_verification')(config.API_KEY);
+var session = require('express-session');
 
 // https://github.com/seegno/authy-client
 const Client = require('authy-client').Client;
@@ -15,13 +16,25 @@ function hashPW(pwd) {
     return crypto.createHash('sha256').update(pwd).digest('base64').toString();
 }
 
-module.exports = {
+
+// function createSession(req, res, user) {
+//     req.session.regenerate(function () {
+//         req.session.loggedIn = true;
+//         req.session.userId = user.userId;
+//         req.session.username = user.userName;
+//         req.session.longitude = user.longitude;
+//         req.session.latitude = user.latitude;
+//         res.status(200).json();
+//     });
+// }
+
+var signupLogin = {
 
 checkUserName : function(req, res){
 
-			db.userProfile.findAll({
-			     where: {userName: req.body.userName}
-			}).then(function(err, user){
+            db.userProfile.findAll({
+                 where: {userName: req.body.userName}
+            }).then(function(err, user){
 
                 if (user == null || user == undefined ) {
 
@@ -38,15 +51,72 @@ checkUserName : function(req, res){
                     res.json({error: "Username is not available! Please pick a new one!"});
                     
                 }
-      					
-    		});
+                        
+            });
 
-					
+                    
 
 },
 hashPW : function(pwd) {
-    		return crypto.createHash('sha256').update(pwd).digest('base64').toString();
-		},
+            return crypto.createHash('sha256').update(pwd).digest('base64').toString();
+        },
+
+createNewProfile : function(user, cb){
+
+    console.log("in createNewProfile");
+    // var user = req.body;
+
+    // console.log(req.body)
+
+    console.log(user);
+    // try{
+
+    //     db.userProfile.create({
+    //     userName: user.userName,
+    //     password: signupLogin.hashPW(user.password),
+    //     firstName: user.firstName,
+    //     address_1: user.address_1,
+    //     address_2: user.address_2,
+    //     city: user.city,
+    //     state: user.state,
+    //     zipCode: user.zipCode,
+    //     country: user.country,
+    //     phone: user.phone,
+    //     email: user.email,
+    //     longitude: -95.543191,
+    //     latitude: 29.558719
+    // }).then(function(user) {
+         
+    //      cb(user);
+       
+    // });
+
+
+    // }catch(e){console.log(e.message)};
+
+    db.userProfile.create({
+        userName: user.userName,
+        password: signupLogin.hashPW(user.password),
+        firstName: user.firstName,
+        address_1: user.address_1,
+        address_2: user.address_2,
+        city: user.city,
+        state: user.state,
+        zipCode: user.zipCode,
+        country: user.country,
+        phone: user.phone,
+        email: user.email,
+        longitude: -95.543191,
+        latitude: 29.558719
+    }).then(function(user) {
+         
+         cb(user);
+       
+    }).catch(function(error){
+        console.log(error);
+    })
+},
+
 
 requestPhoneVerification : function (req, res/*, phone*/) {
     var phone_number = req.body.phone;
@@ -56,7 +126,7 @@ requestPhoneVerification : function (req, res/*, phone*/) {
     // console.log("body: ", req.body);
 
     if (phone_number && country_code && via) {
-    	// var isSuccess;
+        // var isSuccess;
         phoneReg.requestPhoneVerification(phone_number, country_code, via, function (err, response) {
             if (err) {
                 console.log('error creating phone reg request', err);
@@ -80,11 +150,13 @@ requestPhoneVerification : function (req, res/*, phone*/) {
 
 },
 
-verifyPhoneToken : function (req, res/*, phone, token*/){
+verifyPhoneToken : function (req, res){
 
     var country_code = 1;
     var phone_number = req.body.phone;
     var token = req.body.token;
+
+    console.log(phone_number);
 
     
     if (phone_number && country_code && token) {
@@ -97,17 +169,32 @@ verifyPhoneToken : function (req, res/*, phone, token*/){
                     console.log('Confirm phone success confirming code: ', response);
                     if (response.success) {
                         
-                        var address = req.body.address_1 + ", "+ req.body.city +", "+ req.body.state + ", " + req.body.zipCode + ", " + req.body.country;
-                        var addressFixed = address.replace(/\s+/g,"+");
+                        // var address = req.body.address_1 + ", "+ req.body.city +", "+ req.body.state + ", " + req.body.zipCode + ", " + req.body.country;
+                        // var addressFixed = address.replace(/\s+/g,"+");
 
-                        var latLng = geocode(addressFixed, function(res){
+                        // var geoCode = findGeoCode(addressFixed);
 
-                            var coordinates = res;
-                            return coordinates;
+                          signupLogin.createNewProfile(req.body, function(user){
+                                
+                                
+                                     if(user){
 
-                        });
+                                        console.log("before rendering");
 
-                        this.createNewProfile(req, res, latLng);
+                                        console.log(req.session);
+                                        
+                                        createSession(req, res, user);
+
+                                        console.log(req.session.userId);
+
+                                        res.render("landing");
+                                        
+                                     }else if (user == null || user == undefined) {
+                                        res.json({error: "Your Information is invalid!"});
+                                        
+                                     }
+
+                          });
 
                             // if (profileCreated){
 
@@ -117,7 +204,7 @@ verifyPhoneToken : function (req, res/*, phone, token*/){
                             // }
                                 
                         }else {
-                    	
+                        
                         console.log('Failed in Confirm Phone request body: ', response.message);
                         res.json({error: response.message});
                         }
@@ -126,39 +213,39 @@ verifyPhoneToken : function (req, res/*, phone, token*/){
     }
 },
 
-createNewProfile : function(req, res, latLng){
-	var user = req.body;
+// createNewProfile : function(req, res/*, geoCode*/){
+//  var user = req.body;
 
-	db.userProfile.create({
-		userName: user.userName,
-		password: this.hashPW(user.password),
-		firstName: user.firstName,
-		address_1: user.address_1,
-		address_2: user.address_2,
-		city: user.city,
-		state: user.state,
-		zipCode: user.zipCode,
-		country: user.country,
-		phone: user.phone,
-		email: user.email,
-		longitude: latLng.longitude,
-		latitude: latLng.latitude
-	}).then(function(err, user) {
+//  db.userProfile.create({
+//      userName: user.userName,
+//      password: this.hashPW(user.password),
+//      firstName: user.firstName,
+//      address_1: user.address_1,
+//      address_2: user.address_2,
+//      city: user.city,
+//      state: user.state,
+//      zipCode: user.zipCode,
+//      country: user.country,
+//      phone: user.phone,
+//      email: user.email,
+//      longitude: -95.543191,
+//      latitude: 29.558719
+//  }).then(function(err, user) {
 
-		 if (err) {
-            res.json({error: "Your Information is invalid!"});
-		 	
-		 }
-		 if(user){
+//       if (err) {
+//             res.json({error: "Your Information is invalid!"});
             
-            createSession(req, res, user);
-
-		 	res.render("landing");
+//       }
+//       if(user){
             
-		 }
+//             createSession(req, res, user);
+
+//          res.render("landing");
+            
+//       }
        
-    });
-},
+//     });
+// },
 
 loggedIn : function(req, res){
 
@@ -167,7 +254,7 @@ loggedIn : function(req, res){
 
     db.userProfile.findOne({
         where:{userName: req.body.userName}
-    }).then(function(err, user) {
+    }).then(function(user) {
          if (user == null || user == undefined ) {
 
             res.json({error: "Username is not found!"});
@@ -182,10 +269,10 @@ loggedIn : function(req, res){
                     res.render("landing");
                 }
         }
-        if (err) {
+        // if (err) {
 
-            res.status(500).json({error: "An error occur, please try again!"});
-        }
+        //     res.status(500).json({error: "An error occur, please try again!"});
+        // }
     });
     
 }
@@ -196,10 +283,13 @@ loggedIn : function(req, res){
 function createSession(req, res, user) {
     req.session.regenerate(function () {
         req.session.loggedIn = true;
-        req.session.user = user.userId;
+        req.session.userId = user.userId;
         req.session.username = user.userName;
         req.session.longitude = user.longitude;
         req.session.latitude = user.latitude;
         res.status(200).json();
     });
 }
+
+module.exports = signupLogin;
+

@@ -23,6 +23,7 @@
     "crypto": "0.0.3",
     "express": "^4.14.1",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.1",
     "fs": "0.0.1-security",
     "method-override": "^2.3.7",
     "mysql": "^2.13.0",
