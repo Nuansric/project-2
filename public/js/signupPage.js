@@ -61,6 +61,7 @@ $("#checkUsername").on("click", function(){
 				address_2: $("#address_2").val().trim(),
 				city: $("#city").val().trim(),
 				state: $("#state").val().trim(),
+				zipCode: $("#zipCode").val().trim(),
 				country: $("#country").val().trim(),
 				phone: $("#phone").val().trim(),
 				email: $("#email").val().trim(),
@@ -85,7 +86,12 @@ $("#checkUsername").on("click", function(){
 					console.log("inside if data.success" + (data.success));
 			
 
+		$("#token").val("");
+		$("#isRightPhone").empty();
+
 		$("#verifyPhoneToken").modal();
+
+		
 
 		
 		$("#tokenVerification").on("click", function(){
@@ -96,6 +102,8 @@ $("#checkUsername").on("click", function(){
 
 			$.post("/createProfile", newUser, function(data){
 				console.log("/createProfile");
+
+				newUser={};
 
 				if(data.error !==  null || data.error !== undefined){
 
@@ -109,7 +117,7 @@ $("#checkUsername").on("click", function(){
 		//if 200
 		else{
 			//if the sms was not sent successfully
-			$("#isRightInput").html("The phone Number you entered needs to be a 10 digits cell phone");
+			$("#isRightInput").html(data.error);
 		}
 	}
 

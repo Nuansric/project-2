@@ -131,7 +131,7 @@ findService : function(req, res){
                   neighborFound: "None of your neighbor is a member of Neighborhood Network"
                  };
 
-              res.render("service", serviceFound);
+              res.render("noService", serviceFound);
 
 		    }
 

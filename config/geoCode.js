@@ -3,7 +3,7 @@
 // installing request npm package to receive data from URL
 var request = require("request");
 
-var APIKeys = require("../keys.js");
+var APIKeys = require("keys.js");
 
 // API key for google.
 var googleCred = APIKeys.keys.googleApi;
