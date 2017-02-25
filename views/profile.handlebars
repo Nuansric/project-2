@@ -1,0 +1,30 @@
+<h1>Profile Information</h1>
+
+<p><b>Username: </b> {{currentUser.dataValues.userName}}</p>
+<p><b>First Name: </b> {{currentUser.dataValues.firstName}}</p>
+<p><b>Address Line 1: </b> {{currentUser.dataValues.address_1}}</p>
+<p><b>Address Line 2: </b> {{currentUser.dataValues.address_2}}</p>
+<p><b>City: </b> {{currentUser.dataValues.city}}</p>
+<p><b>State: </b> {{currentUser.dataValues.state}}</p>
+<p><b>Zip Code: </b> {{currentUser.dataValues.zipCode}}</p>
+<p><b>Country: </b> {{currentUser.dataValues.country}}</p>
+<p><b>Phone: </b> {{currentUser.dataValues.phone}}</p>
+<p><b>Email: </b> {{currentUser.dataValues.email}}</p>
+
+<br><br>
+
+<h1>Your Services</h1>
+<ol>
+{{#each currentUser.userServices}}
+<li><br>
+<b>Service Description:</b>  {{this.description}}
+<br>
+<b>Discount Offer:</b> {{this.discount}}
+</li>
+{{/each}}
+</ol>
+
+<br><br>
+<form action="/delete?_method=DELETE" method="POST">
+	<button type="submit" class="btn btn-lg btn-danger" id="deleteButton">DELETE ACCOUNT</button>
+</form>

@@ -93,6 +93,7 @@ app.use(function(req, res, next) {
 require("./routes/signupLoginRoutes.js")(app);
 require("./routes/searchRoutes.js")(app);
 require("./routes/addServiceRoutes.js")(app);
+require("./routes/profileRoutes.js")(app);
 
 
 db.sequelize.sync({ force: false }).then(function() {

@@ -21,7 +21,10 @@ console.log("logged in before render");
   //   	res.render("addService", serviceObject);
   //   	console.log("logged in after render");
 
-	})
+	}).catch(function(error){
+          console.log(error);
+        //  res.json({error: "We are experiencing technical difficulty. Please try again..."});
+});
 },
 
 addServiceDb : function(req, res){
@@ -34,17 +37,22 @@ console.log("inside addServiceDB");
      console.log(req.session.user);
 
   db.userService.create({
-    serviceOfferServiceId: serviceId,
+   
     description: description,
     discount: discount,
-    userProfileUserId: req.session.userId
+    serviceOfferServiceId: serviceId,
+    userProfileUserId: req.session.user.userId
+    
+  }).then(function(user){
 
-  }).then(function(err, user){
-    if(err){
-      throw err;
+    if(user){
+      res.redirect("/landing");
     }
-    console.log(req.body);
-  });
+   
+  }).catch(function(error){
+          console.log(error);
+        //  res.json({error: "We are experiencing technical difficulty. Please try again..."});
+});
 
 
 }
