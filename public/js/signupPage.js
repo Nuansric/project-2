@@ -65,7 +65,8 @@ $("#checkUsername").on("click", function(){
 				country: $("#country").val().trim(),
 				phone: $("#phone").val().trim(),
 				email: $("#email").val().trim(),
-				token: ""			}
+				token: ""			
+			}
 
 
 		if(validateUserInput() === true){
@@ -105,11 +106,19 @@ $("#checkUsername").on("click", function(){
 
 				newUser={};
 
-				if(data.error !==  null || data.error !== undefined){
+				console.log("beofre if");
+
+				console.log(data);
+
+				if((data)&&(data.error)){
+					console.log("GOT ERROR");
 
 					$("#isRightPhone").html(data.error);
+				}else{
+					console.log("before window");
+					window.location = data;
 				}
-						
+				console.log("outside");		
 			});
 
 		});
@@ -144,9 +153,9 @@ $("#checkUsername").on("click", function(){
 					
 					$("#loginResult").html(data.error);
 
-				};
-
-
+				} else {
+					window.location = data;
+				}
 						
 			});	
 

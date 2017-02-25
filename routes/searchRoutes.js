@@ -1,4 +1,6 @@
 var searchController = require("../controller/search_controller");
+var loggedInCheck = require("./loggedInCheck");
+
 
 //export all routes into server.js
 module.exports = function(app){
@@ -10,9 +12,9 @@ module.exports = function(app){
 //     res.sendFile(path.join(__dirname + "/../public/login.html"));
 // });	
 
-app.get("/search", searchController.renderSearchBar);
+app.get("/search", loggedInCheck.requireLogin, searchController.renderSearchBar);
 
-app.post("/service", searchController.findService);
+app.post("/service", loggedInCheck.requireLogin, searchController.findService);
 
 
 

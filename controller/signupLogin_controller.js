@@ -1,5 +1,6 @@
 var crypto = require('crypto');
 var db = require("../models");
+var geocode = require("../config/geoCode");
 
 var config = require('../config/authyConfig.js');
 var qs = require('qs');
@@ -57,7 +58,7 @@ hashPW : function(pwd) {
             return crypto.createHash('sha256').update(pwd).digest('base64').toString();
         },
 
-createNewProfile : function(req, res, cb){
+createNewProfile : function(req, res, coordinates, cb){
 
     console.log("in createNewProfile");
     var user = req.body;
@@ -66,26 +67,6 @@ createNewProfile : function(req, res, cb){
 
     console.log(user);
     // try{
-
-    //     db.userProfile.create({
-    //     userName: user.userName,
-    //     password: signupLogin.hashPW(user.password),
-    //     firstName: user.firstName,
-    //     address_1: user.address_1,
-    //     address_2: user.address_2,
-    //     city: user.city,
-    //     state: user.state,
-    //     zipCode: user.zipCode,
-    //     country: user.country,
-    //     phone: user.phone,
-    //     email: user.email,
-    //     longitude: -95.543191,
-    //     latitude: 29.558719
-    // }).then(function(user) {
-         
-    //      cb(user);
-       
-    // });
 
 
     // }catch(e){console.log(e.message)};
@@ -102,8 +83,8 @@ createNewProfile : function(req, res, cb){
         country: user.country,
         phone: user.phone,
         email: user.email,
-        longitude: -95.543191,
-        latitude: 29.558719
+        longitude: coordinates.longitude,
+        latitude: coordinates.latitude
     }).then(function(user) {
          
          cb(user);
@@ -166,50 +147,26 @@ verifyPhoneToken : function (req, res){
                     console.log('Confirm phone success confirming code: ', response);
                     if (response.success) {
                         
-                                               // var address = req.body.address_1 + ", "+ req.body.city +", "+ req.body.state + ", " + req.body.zipCode + ", " + req.body.country;
-                        // var addressFixed = address.replace(/\s+/g,"+");
+                        var address = req.body.address_1 + ", "+ req.body.city +", "+ req.body.state + ", " + req.body.zipCode + ", " + req.body.country;
+                        var addressFixed = address.replace(/\s+/g,"+");
 
+                    console.log(addressFixed);
 
-                    //     geocode(addressFixed, function(res){
+                    geocode(addressFixed, function(coordinate){
                     //             console.log(req.session);
                      
+                     console.log(coordinate);
                                 
-  
-                    //                 var coordinates = res;
+                                 var coordinates = coordinate;
 
-                    //                    signupLogin.createNewProfile(req.body, coordinates, function(user){
-                                
-                                
-                    //                  if(user){
+                                 console.log(coordinates);
 
-                    //                     console.log("before rendering");
-
-                    //                     console.log(req.session);
-                                        
-                    //                     createSession(req, res, user);
-
-                    //                     console.log(req.session.userId);
-
-                    //                     res.render("landing");
-                                        
-                    //                  }else if (user == null || user == undefined) {
-                    //                     res.json({error: "Your Information is invalid!"});
-                                        
-                    //                  }
-
-                    //       });
-                              
-                                
-  
-                    // });
-
-
-                          signupLogin.createNewProfile(req, res, function(user){
+                            signupLogin.createNewProfile(req, res, coordinates, function(user){
                                 
                                 
                                      if(!user.error){
 
-                                        console.log("before rendering");
+                                        console.log("after created");
 
                                         // console.log(req.session);
                                         
@@ -217,7 +174,7 @@ verifyPhoneToken : function (req, res){
 
                                         // console.log(req.session.userId);
 
-                                        res.render("landing");
+                                        res.send("/login");
                                         
                                      }else if (user.error) {
                                         console.log(user.error);
@@ -226,6 +183,33 @@ verifyPhoneToken : function (req, res){
                                      }
 
                           });
+                                
+  
+                    });
+
+
+                          // signupLogin.createNewProfile(req, res, function(user){
+                                
+                                
+                          //            if(!user.error){
+
+                          //               console.log("after created");
+
+                          //               // console.log(req.session);
+                                        
+                          //               // createSession(req, res, user);
+
+                          //               // console.log(req.session.userId);
+
+                          //               res.send("/login");
+                                        
+                          //            }else if (user.error) {
+                          //               console.log(user.error);
+                          //               res.json({error: user.error});
+                                        
+                          //            }
+
+                          // });
 
                             // if (profileCreated){
 
@@ -280,24 +264,65 @@ verifyPhoneToken : function (req, res){
 
 loggedIn : function(req, res){
 
-    var enteredPassword = this.hashPW(req.body.password);
+    console.log("logging in");
+    // console.log(req.headers);
 
+  var enteredPassword = signupLogin.hashPW(req.body.password);
+
+    // var key = req.headers.cookie.split(";")[1].substring(9);
+    // var sessionKey = (key.length > 75?key.substring(0, 74):key);
+    // if(req.session.views==undefined){
+    //     req.session.views ={};
+    // }
+    // if(req.session.views[sessionKey]==null){
+    //     req.session.views[sessionKey]={
+    //         userProfile: 1,
+    //         userName: "chanita"
+    //     };
+    // }
+
+    // console.log(req.session.views[sessionKey]);
 
     db.userProfile.findOne({
         where:{userName: req.body.userName}
     }).then(function(user) {
+
+        // console.log(user);
          if (user == null || user == undefined ) {
 
             res.json({error: "Username is not found!"});
             
-        }else if(user){
-
+        }else{
+            // if(user){
                 if (enteredPassword !== user.password)
                 {
                     res.json({error: "Your username and password do not match!"});
                 } else {
-                    createSession(req, res, user);
-                    res.render("landing");
+
+                    var currentUser = {
+                        userId: user.userId,
+                        userName : user.userName,
+                        firstName : user.firstName,
+                        longitude : user.longitude,
+                        latitude: user.latitude,
+                        email: user.email
+                    }
+
+                    console.log(currentUser);
+
+                    req.session.user = currentUser;
+                    res.locals.user = currentUser;
+
+                    console.log("res.session.user");
+                    console.log(req.session.user);
+
+
+                    res.send('/landing');
+
+                    console.log("after landing");
+
+                    // createSession(req, res, user);
+                    // res.render("landing");
                 }
         }
         // if (err) {
@@ -306,7 +331,7 @@ loggedIn : function(req, res){
         // }
     }).catch(function(error){
         console.log(error);
-        res.json({error: error.errors.message});
+        res.json({error: "We are experiencing technical difficulty. Please try again..."});
 
     });
     

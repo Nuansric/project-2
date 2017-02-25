@@ -10,9 +10,6 @@ serviceId:{
 serviceName: {
     type: DataTypes.STRING
   }
-}, {
-  timestamps: false
-
 },
 {
       // We're saying that we want our Author to have Posts
@@ -24,10 +21,13 @@ serviceName: {
             onDelete: "cascade"
           });
         }
-      }
-    }
+      },
+    
+timestamps: false
+ 
+  
 
-
+}
 
 );
 

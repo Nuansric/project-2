@@ -24,6 +24,9 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var db = require("./models");
 var methodOverride = require("method-override");
+// var cookieSession = require('cookie-session');
+var session = require('client-sessions');
+
 
 
 
@@ -46,8 +49,46 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 // Sets up the Express App
-
+app.set('trust proxy', "1") ;
 // Routes
+app.use(session({
+  cookieName: 'session',
+  secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
+  duration: 60 * 60 * 1000,
+  activeDuration: 30 * 60 * 1000,
+  httpOnly: true,
+  secure: true,
+  ephemeral: true
+}));
+
+app.use(function(req, res, next) {
+  if (req.session && req.session.user) {
+     db.userProfile.findOne({
+        where:{userName: req.body.userName}
+    }).then(function(user) {
+      if (user) {
+      	var currentUser = {
+          userId: user.userId,
+      		userName : user.userName,
+      		firstName : user.firstName,
+      		longitude : user.longitude,
+      		latitude: user.latitude,
+      		email: user.email
+      	}
+        req.user = currentUser;
+        /// delete the password from the session
+        req.session.user = currentUser;  //refresh the session value
+        res.locals.user = currentUser;
+      }
+      // finishing processing the middleware and run the route
+      next();
+    });
+  } else {
+    next();
+  }
+});
+
+
 // =============================================================
 require("./routes/signupLoginRoutes.js")(app);
 require("./routes/searchRoutes.js")(app);

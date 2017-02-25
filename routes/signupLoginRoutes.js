@@ -1,5 +1,5 @@
 var signupLoginController = require("../controller/signupLogin_controller");
-
+var loggedInCheck = require("./loggedInCheck");
 //export all routes into server.js
 
 
@@ -37,9 +37,8 @@ app.post("/requestSms", signupLoginController.requestPhoneVerification);
 
 app.post("/createProfile", signupLoginController.verifyPhoneToken);
 
-
-app.get("/landing", function(req, res){
+app.get("/landing", loggedInCheck.requireLogin, function(req, res){
     res.render("landing");
 })
-}
 
+}

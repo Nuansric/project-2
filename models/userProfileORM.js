@@ -113,15 +113,15 @@ email: {
 
   },
 longitude: {
-    type: DataTypes.DECIMAL
+    type: DataTypes.DECIMAL(11, 8)
+    
   },
 latitude: {
-    type: DataTypes.DECIMAL
+    type: DataTypes.DECIMAL(11, 8)
+    
+    
   }
-}, {
-  timestamps: false
-
-},
+}, 
 {
       // We're saying that we want our Author to have Posts
   classMethods: {
@@ -132,11 +132,18 @@ latitude: {
     onDelete: "cascade"
     });
         }
-      }
+      },
+    
+timestamps: false
+
+
     }
 
 
+// {
+  
 
+// }
 
 );
 

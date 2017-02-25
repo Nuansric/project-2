@@ -3,7 +3,7 @@
 // installing request npm package to receive data from URL
 var request = require("request");
 
-var APIKeys = require("keys.js");
+var APIKeys = require("./keys.js");
 
 // API key for google.
 var googleCred = APIKeys.keys.googleApi;
@@ -13,7 +13,10 @@ var geoCodeURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
 // pass the address and call back function to geocode
 // call back function waits for the results from request URL
 // and stores the value in a variable as an object
+
 var geocode = function(address, cb) {
+
+    var apiKey = APIKeys.keys.googleApi;
 
     // concatenate different parts of URL to make a query
     var url = geoCodeURL + address + "&key=" + apiKey;
@@ -39,11 +42,11 @@ var geocode = function(address, cb) {
 };
 
 // call the geocode function, along with the callback function
-var latLng = geocode(address, function(res){
+// var latLng = geocode(address, function(res){
 
-    var coordinates = res;
-    return coordinates;
+//     var coordinates = res;
+//     return coordinates;
 
-});
+// });
 
 module.exports = geocode;

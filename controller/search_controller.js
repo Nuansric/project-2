@@ -62,6 +62,9 @@ renderSearchBar : function(req, res){
       			services: data
     	};
 
+    console.log("inside search");
+
+    console.log(req.session.user);
     	// console.log(serviceObject);
 
     	// console.log("HHHH"+ serviceObject.services[0].dataValues.serviceName);
@@ -77,16 +80,19 @@ findService : function(req, res){
 
 		console.log(req.body);
 
-		var currentUserId = req.session.userId;
+		var currentUserId = req.session.user.userId;
 
-		var userLon = req.session.longitude;
+		var userLon = req.session.user.longitude;
 
-		var userLat = req.session.latitude;
+		var userLat = req.session.user.latitude;
 
 		var userInDistance = [];
+    console.log("inside findService");
+     console.log(req.session.user);
 
   		db.getDistance(currentUserId, userLon, userLat, function(result){
   				
+          console.log("getDistance result");
   				console.log(JSON.stringify(result, null, 2));
 
   				var userData = result[0];
@@ -96,44 +102,46 @@ findService : function(req, res){
   		        for(var i=0; i < userData.length; i++){
 
   		      		  userInDistance.push(userData[i].id);
+                    console.log("getDistance result array");
+                    console.log(userInDistance);
   				}
-
+              console.log("getDistance result array2");
           		console.log(userInDistance);
       	});
-
+console.log("getDistance result array3");
     console.log(userInDistance);
 
-        if(userInDistance.length > 0){
+      //   if(userInDistance.length > 0){
 
-           		 db.userProfile.findAll({
+      //      		 db.userProfile.findAll({
     			
-    					where: {
-    		        			userId: userInDistance
-    		      				},
-    		      		include: [{
-    		        				model: userService,
-    		        				where: { serviceId: serviceID}
-    		    		}]
+    		// 			where: {
+    		//         			userId: userInDistance
+    		//       				},
+    		//       		include: [{
+    		//         				model: userService,
+    		//         				where: { serviceId: serviceID}
+    		//     		}]
 
 
-           		 }).then(function(result) {
-          			var serviceFound = {
-          				neighborFound: data
-        			   };
+      //      		 }).then(function(result) {
+      //     			var serviceFound = {
+      //     				neighborFound: data
+      //   			   };
 
-        			res.render("service", serviceFound);
+      //   			res.render("service", serviceFound);
 
-        		});
+      //   		});
     		
-		    }else{
+		    // }else{
 
-              var serviceFound = {
-                  neighborFound: "None of your neighbor is a member of Neighborhood Network"
-                 };
+      //         var serviceFound = {
+      //             neighborFound: "None of your neighbor is a member of Neighborhood Network"
+      //            };
 
-              res.render("noService", serviceFound);
+      //         res.render("noService", serviceFound);
 
-		    }
+		    // }
 
 
 }

@@ -18,10 +18,7 @@ discount: {
     type: DataTypes.BOOLEAN
     , allowNull: false
   }
-}, {
-  timestamps: false
-
-},
+}, 
 {
       // We're saying that we want our Author to have Posts
       classMethods: {
@@ -42,8 +39,11 @@ discount: {
             }
           });
         }
-      }
-    }
+      },
+    
+  timestamps: false
+
+}
 
 
 

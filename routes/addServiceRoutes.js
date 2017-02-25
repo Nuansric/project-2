@@ -1,4 +1,6 @@
 var addServiceController = require("../controller/addService_controller");
+var loggedInCheck = require("./loggedInCheck");
+
 
 //export all routes into server.js
 
@@ -11,9 +13,9 @@ module.exports = function(app){
 //     res.sendFile(path.join(__dirname + "/../public/login.html"));
 // });	
 
-app.get("/addService", addServiceController.renderAddService);
+app.get("/addService", loggedInCheck.requireLogin, addServiceController.renderAddService);
 
-app.post("/addedService", addServiceController.addServiceDb);
+app.post("/addedService", loggedInCheck.requireLogin, addServiceController.addServiceDb);
 
 
 
