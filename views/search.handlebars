@@ -1,19 +1,30 @@
-<h1>Search for Service</h1>
+<div class="row">
+  <div class="boxs">  
+  <div class="col-md-12">
+      <div class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.8s">
+        <div class="align-center">
+          <h1>Search for Service</h1> 
+          <div class="icon">
+            <i class="fa fa-search fa-5x"></i>
 
+          </div>
 
-<form action="/service" method="POST">
-<select data-placeholder="" class="userInput" name="serviceId">
-<option value="">Select Service Category</option>
- {{#each services}}
-      
-      <option value="{{this.dataValues.serviceId}}">{{this.dataValues.serviceName}}</option>
-            
-  {{/each}}
-</select>
-<br><br>
+          <div class="ficon">
+            <form action="/service" method="POST">
+              <select data-placeholder="" class="userInput" name="serviceId">
+                <option value="">Select Service Category</option>
+                {{#each services}}
 
-<button type="submit" class="btn btn-lg btn-default" >Search</button>
+                <option value="{{this.dataValues.serviceId}}">{{this.dataValues.serviceName}}</option>
 
-<!-- <br><br>
-<button type="submit" class="btn btn-lg btn-default" id="searchButton">Search</button> -->
-</form>
+                {{/each}}
+              </select>
+              <br><br>
+
+              <button type="submit" class="btn btn-lg btn-default" >Search</button></form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
