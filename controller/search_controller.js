@@ -1,5 +1,8 @@
 var db = require("../models");
 
+
+
+
 /*
 IF FOUND
 
@@ -87,29 +90,51 @@ findService : function(req, res){
 		var userLat = req.session.user.latitude;
 
 		var userInDistance = [];
-    console.log("inside findService");
-     console.log(req.session.user);
 
-  		db.getDistance(currentUserId, userLon, userLat, function(result){
+  		db.getDistance(currentUserId, userLon, userLat, serviceID, function(result){
   				
           console.log("getDistance result");
   				console.log(JSON.stringify(result, null, 2));
+/*
+        if(result.length > 0){
+          	
+  		        for(var i=0; i < result.length; i++){
 
-  				var userData = result[0];
-
-          		console.log("userID " + JSON.stringify(userData[0], null, 2))
-
-  		        for(var i=0; i < userData.length; i++){
-
-  		      		  userInDistance.push(userData[i].id);
+  		      		  userInDistance.push(result[i].userId);
                     console.log("getDistance result array");
                     console.log(userInDistance);
-  				}
-              console.log("getDistance result array2");
-          		console.log(userInDistance);
-      	});
-console.log("getDistance result array3");
-    console.log(userInDistance);
+  				  }
+          } 
+          else{
+            res.render("noService");
+          } 
+
+          */  
+            if(result.length > 0){
+
+
+                var serviceFound = {
+                  
+                  neighborFound: result
+                };
+
+                 res.render("service", serviceFound);
+
+
+
+
+            }else{
+
+                res.render("noService", serviceFound);
+            }
+
+
+
+
+});
+
+
+
 
       //   if(userInDistance.length > 0){
 
@@ -119,7 +144,7 @@ console.log("getDistance result array3");
     		//         			userId: userInDistance
     		//       				},
     		//       		include: [{
-    		//         				model: userService,
+    		//         				model: db.userService,
     		//         				where: { serviceId: serviceID}
     		//     		}]
 
@@ -142,12 +167,5 @@ console.log("getDistance result array3");
       //         res.render("noService", serviceFound);
 
 		    // }
-
-
 }
-	
-
-
-
-
 }

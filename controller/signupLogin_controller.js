@@ -37,7 +37,10 @@ checkUserName : function(req, res){
                  where: {userName: req.body.userName}
             }).then(function(user){
 
-                if (user == null || user == undefined ) {
+                console.log("user");
+                console.log(user);
+
+                if (user.userName == null || user.userName == undefined) {
 
                          res.json({error: "Username is Available!"});
                          

@@ -40,7 +40,7 @@ discount: {
           });
         }
       },
-    
+  
   timestamps: false
 
 }
