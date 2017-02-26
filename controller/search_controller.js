@@ -115,7 +115,8 @@ findService : function(req, res){
 
                 var serviceFound = {
                   
-                  neighborFound: result
+                  neighborFound: result,
+                  serviceName: result[0].serviceName
                 };
 
                  res.render("service", serviceFound);

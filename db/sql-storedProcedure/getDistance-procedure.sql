@@ -22,8 +22,10 @@ CREATE PROCEDURE getDistance( USERID INTEGER(10), LONGITUDE1 DECIMAL(11,8), LATI
 	,us.`discount`
 	,us.`serviceOfferServiceId`
 	,us.userProfileUserId
+	,so.`serviceName`
 	 FROM userProfiles
 	INNER JOIN userServices us on us.`userProfileUserId` = userProfiles.`userId`
+	INNER JOIN serviceOffers so on so.`serviceId` = us.`serviceOfferServiceId`
 	WHERE calcDistance(LONGITUDE1 , LATITUDE1 , userProfiles.`longitude` , userProfiles.`latitude`) <= 5.0 
 	AND userProfiles.`userId` != USERID
 	AND us.`serviceOfferServiceId` = ServiceID;

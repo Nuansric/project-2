@@ -88,7 +88,14 @@ userProfileUserId:{
 		type: DataTypes.INTEGER,
     	allowNull: false
    
+},
+serviceName:{
+    type: DataTypes.STRING,
+      allowNull: false
+   
 }
+
+
 }
 
 
