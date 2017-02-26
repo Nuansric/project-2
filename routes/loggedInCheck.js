@@ -11,6 +11,16 @@ requireLogin :  function(req, res, next) {
   } else {
     next();
   }
+},
+
+alreadyLogIn: function(req, res){
+if (req.session.user) {
+
+	console.log(req.session.user);
+
+    res.redirect('/landing');
+  } 
+
 }
 
 }
