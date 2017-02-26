@@ -23,7 +23,7 @@ body {
 	background-color:#fff;
 }
 
-hi,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6 {
 	color:#000;
 	line-height:1.1em;
 }
@@ -110,15 +110,26 @@ a:hover {
 .nav-tabs > li.active > a:focus {
   color: #fff;
   cursor: default;
-  background-color: #f7b733;
+  /*background-color:#f7b733*/
+  background-color: #f7b733
   border: 0;
   border-bottom-color: transparent;
   cursor:pointer;  
 }
 
 /*===========================
-  slider
+  slider and jumbotron
 ============================ */
+
+#jumbo {
+    /* IE8 and below */
+    background: rgb(0, 0, 0);
+    /* all other browsers */
+    background: rgba(0, 0, 0, 0.30);
+}
+#white {
+    background: rgb(247, 183, 51);
+}
 .slider {
 	position: relative;	
 	margin-top:-20px;
@@ -137,7 +148,8 @@ a:hover {
 }
 
 #carousel-slider .carousel-indicators li {
-  border: 1px solid #ffbd20;
+  /*border: 1px solid #ffbd20;*/
+  border: 1px solid #f7b733
 }
 
 #carousel-slider a i {
@@ -148,16 +160,16 @@ a:hover {
 	position: absolute;
 	top: 50%;
 	width: 50px;
-	color:#f7b733;
-	background:#f7b733;
+	color:#f7b733
+	background:#f7b733
 	color:#fff;
 }
 
 #carousel-slider a i:hover {
-	background:#f7b733;
+	background: #f7b733
 	color:#fff;
-	border: 1px solid #f7b733;
-}
+	border: 1px solid #f7b733
+}	
 
 #carousel-slider 
 .carousel-control {
@@ -202,7 +214,8 @@ a:hover {
 	margin-bottom:20px;
 	color:#fff;
 	padding:10px;
-	background:#f7b733;
+	background: #f7b733
+	/************************background:#f7b733;******************************/ 
 }
 
 @media (max-width: 767px) {
@@ -217,7 +230,7 @@ a:hover {
 .carousel-inner .form-inline .form-group button[type="livedemo"]{
 	padding:20px 60px;
 	font-size:20px;
-	background:#f7b733;
+	background: #f7b733
 	color:#fff;
 	border-radius:0;
 	border-color:#fff;
@@ -476,7 +489,7 @@ box-shadow: 1px 2px 2px 4px rgba(204,204,204,1);
 }
 .panel-default > .panel-heading {
   color: #fff;
-  background-color: #f7b733;
+  background-color:#f7b733
   border-color: #eee;
 }
 .panel-default > .panel-heading + .panel-collapse > .panel-body {
@@ -608,7 +621,8 @@ address br {
 }
 
 .sub-footer {
-	 background-color: #f7b733;
+	
+	background-color:#f7b733
 }
 ul.social-network {
 	list-style:none;
