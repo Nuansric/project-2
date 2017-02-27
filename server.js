@@ -21,7 +21,6 @@ var session = require('client-sessions');
 
 // // Initialize Firebase
 
-<<<<<<< HEAD
 // ===========FIREBASE ADMIN SDK===================
 var admin = require("firebase-admin");
 
@@ -34,9 +33,9 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://neighbornetwork-5661f.firebaseio.com"
 });
-=======
+
 // firebase.initializeApp(config);
->>>>>>> 0868b7e1d7aabe1035599e8bda9066821b794397
+
 
 
 // =============================================================
