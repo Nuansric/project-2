@@ -6,6 +6,8 @@ module.exports = {
 		console.log(req.body);
 		console.log(req.session.user);
 		// { receiverId: '3', receiverEmail: 'chaita_n@icloud.com' }
+		
+
 	}
 	
 }
