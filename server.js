@@ -28,6 +28,18 @@ var methodOverride = require("method-override");
 var session = require('client-sessions');
 
 
+// ===========FIREBASE ADMIN SDK===================
+var admin = require("firebase-admin");
+
+//Firebase authentication needs to be replaced with Dylan's authentication
+// I am using dummy firebase database to setup mySQL database connection
+var serviceAccount = require("./config/firebaseAuth.json");
+
+// ------- databaseURL needs to be updated with Dylan's databaseURL -------
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://neighbornetwork-5661f.firebaseio.com"
+});
 
 
 // =============================================================
