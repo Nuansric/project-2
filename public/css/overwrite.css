@@ -22,7 +22,7 @@ input[type="color"],
 
 
 input.input-block-level{
-	padding:20px;
+  padding:20px;
 }
 
 .input-append input,
@@ -196,7 +196,7 @@ input.search-query {
 }
 
 .btn {
-	outline:0;
+  outline:0;
   -webkit-border-radius: 0;
      -moz-border-radius: 0;
           border-radius: 0;
@@ -204,8 +204,8 @@ input.search-query {
 
 
 a.btn,.btn:focus {
-	outline:0;
-	
+  outline:0;
+  
 }
 
 .btn-medium {
@@ -232,11 +232,20 @@ a.btn,.btn:focus {
           border-radius: 0;
 }
 
-
 .btn-default {
-  color: #333333;
-  background-color: #f8f8f8;
+    color: #fff;
+    background-color: #f7b733;
+    border: 2px solid #f7b733;
+    padding: 15px 50px;
+    text-transform: uppercase;
+    font-weight: 900;
 }
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default {
+    color: #ffffff;
+    background-color: black;
+    border-color: black;
+}
+
 
 
 .btn-theme {
