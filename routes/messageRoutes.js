@@ -7,7 +7,9 @@ var loggedInCheck = require("./loggedInCheck");
 
 module.exports = function(app){
 
-
+app.get("/messageinbox", function (request, response){
+    response.render('messageInbox')
+});
 
 // 	app.get("/login", function(req, res) {
 
