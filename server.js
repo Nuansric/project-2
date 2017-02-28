@@ -3,37 +3,13 @@
 // *********************************************************************************
 
 // Dependencies
-// =============================================================
-var config = {
-  apiKey: "AIzaSyDuq0aKWmRuaH8d9SqdOkjteVP0uNmuxf8",
-  authDomain: "neighbornetwork-5a6c7.firebaseapp.com",
-  databaseURL: "https://neighbornetwork-5a6c7.firebaseio.com",
-  storageBucket: "neighbornetwork-5a6c7.appspot.com",
-  messagingSenderId: "748426580419"
-};
-var admin = require("firebase-admin");
-var serviceAccount = require("./neighbornetwork-5a6c7-firebase-adminsdk-gb6ax-cdb6f8c596.json");
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://neighbornetwork.firebaseio.com"
-});
+
 var express = require("express");
 var bodyParser = require("body-parser");
 var db = require("./models");
 var methodOverride = require("method-override");
 // var cookieSession = require('cookie-session');
 var session = require('client-sessions');
-
-// // Initialize Firebase
-
-//Firebase authentication needs to be replaced with Dylan's authentication
-// I am using dummy firebase database to setup mySQL database connection
-// var serviceAccount = require("./config/firebaseAuth.json");
-
-
-// firebase.initializeApp(config);
-
-
 
 
 // =============================================================
