@@ -23,7 +23,7 @@
     <header>
 		<div class="container">
 			<div class="row">
-				<nav class="navbar navbar-default" role="navigation">
+				<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 					<div class="container-fluid">
 						<div class="navbar-header">
 							<div class="navbar-brand">
@@ -69,13 +69,19 @@
                 </div> -->
             
                 <div class="form-group">
-                <label><b>Password*</b></label>
-                <input type="text" name="password" class="form-control userInput" id="password" placeholder="Password must be 5 - 8 characters" data-rule="minlen:5" data-msg="Please enter at least 5 chars" />
-                <div class="validation"></div>
+                    <label><b>Password*</b></label>
+                    <input type="password" name="password" class="form-control userInput" id="password" placeholder="Password must be 5 - 8 characters" data-rule="minlen:5" data-msg="Please enter at least 5 chars" />
+                    <div class="validation"></div>
                 </div>
- 				</form>
+                <!--These need to match before the user is allowed to proceed.-->
+                <div class="form-group">
+                    <label><b>Re-Type Password*</b></label>
+                    <input type="password" name="reTypePassword" class="form-control userInput" id="reTypePassword" placeholder="Make sure both password fields match" data-rule="minlen:5"/>
+                    <div class="validation"></div>
+                </div>
+            </form>
  				<div class="text-center" id="isUsernameAvailable"></div>
-
+                
                 <br>
 
                 <div class="text-center"><button id="checkUsername" type="submit" class="btn btn-default">Check Username Availability</button></div>

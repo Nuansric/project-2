@@ -132,7 +132,7 @@ $("#checkUsername").on("click", function(){
 
 		});
 	}else{
-			$("#isRightInput").html("Please Fill out the missing input");
+			$("#isRightInput").html("Please enter your username and password to login");
 	}
 	});
 
@@ -161,7 +161,7 @@ $("#checkUsername").on("click", function(){
 
 		}else{
 
-			$("#loginResult").html("Please Fill out the missing input");
+			$("#loginResult").html("Please enter your username and password to login");
 
 		}
 

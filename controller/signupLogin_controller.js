@@ -299,7 +299,7 @@ loggedIn : function(req, res){
             // if(user){
                 if (enteredPassword !== user.password)
                 {
-                    res.json({error: "Your username and password do not match!"});
+                    res.json({error: "The pasword you've entered is incorrect. Please try again."});
                 } else {
 
                     var currentUser = {
@@ -334,7 +334,7 @@ loggedIn : function(req, res){
         // }
     }).catch(function(error){
         console.log(error);
-        res.json({error: "We are experiencing technical difficulty. Please try again..."});
+        res.json({error: "We are experiencing technical difficulties. Please try again."});
 
     });
     
