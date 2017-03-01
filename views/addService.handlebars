@@ -1,20 +1,9 @@
-<h1>Add Service</h1>
-
-  <div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Add a Service
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-
-    {{#each services}}
-    <li value="{{this.dataValues.serviceId}}">{{this.dataValues.serviceName}}</li>
-
-    {{/each}}
-  </ul>
-</div>
+<h1 style="color: #f7b733" class="text-center">Add Service</h1>
 
 
 <form action="/addedService" method="POST">
-<select data-placeholder="" class="userInput" name="serviceId">
+<label for="">Service Category</label><br><br>
+<select data-placeholder="" class="chosen-select" name="serviceId" style="width:350px;">
   <option value="">Select Service Category</option>
   {{#each services}}
       
@@ -22,16 +11,16 @@
             
   {{/each}}
 </select>
-
+<BR><BR>
 <div class="form-group">
     <label for="des">Service Description</label>
-    <input type="text" id="des" name="description">
+    <textarea class="form-control" rows="10" id="des" name="description" placeholder="Describe the service that you offer here"></textarea>
  </div>
-
+<br><br>
  <div class="form-group">
     <label for="slee">Are you offering discount?</label><br>
-    <input type="radio" name="discount" value="1" checked>YES<br>
-    <input type="radio" name="discount" value="0">NO
+    <input type="radio" name="discount" value="1" checked> YES<br>
+    <input type="radio" name="discount" value="0"> NO
   </div>
 
 

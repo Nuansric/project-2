@@ -12,8 +12,8 @@
 
           <div class="ficon">
             <form action="/service" method="POST">
-              <select data-placeholder="" class="userInput" name="serviceId">
-                <option value="">Select Service Category</option>
+              <select data-placeholder="" class="chosen-select" name="serviceId" style="width:350px;">
+                <option  value="">Select Service Category</option>
                 {{#each services}}
 
                 <option value="{{this.dataValues.serviceId}}">{{this.dataValues.serviceName}}</option>
