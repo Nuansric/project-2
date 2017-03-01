@@ -20,7 +20,7 @@ var mailOptions = {
     from: sender, // sender address
     to: receiver, // list of receivers
     subject: messageSubject, // Subject line
-    text: message + ">>>>>>>Please Reply to: " + sender, // plain text body
+    text: message + "\nPlease Reply to: " + sender, // plain text body
     // html: '<b>Hello world ?</b>' // html body
 };
 
