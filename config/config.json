@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Djokovic2017",
+    "password": "g70224933@IIE",
     "database": "utilizedNeighbor_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
