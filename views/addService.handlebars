@@ -1,33 +1,36 @@
+<div class="wow bounceIn text-center" data-wow-offset="0" data-wow-delay="0.8s">
 <h1 style="color: #f7b733" class="text-center">Add Service</h1>
 
 
 <form action="/addedService" method="POST">
-<label for="">Service Category</label><br><br>
-<select data-placeholder="" class="chosen-select" name="serviceId" style="width:350px;">
+  <label for="">Service Category</label>
+  <br>
+  <select data-placeholder="" class="chosen-select" name="serviceId" style="width:350px;">
   <option value="">Select Service Category</option>
-  {{#each services}}
-      
-  <option value="{{this.dataValues.serviceId}}">{{this.dataValues.serviceName}}</option>
-            
-  {{/each}}
-</select>
+    {{#each services}}
+      <option value="{{this.dataValues.serviceId}}">{{this.dataValues.serviceName}}</option>      
+    {{/each}}
+  </select>
+
 <BR><BR>
-<div class="form-group">
+
+  <div class="form-group">
     <label for="des">Service Description</label>
+    <br>
+    <small>Here, we give our service providers an opportunity to explain what they do. Think of this as an opportunity to differentiate yourself from others that provide similar services to yours. We recommend somewhere between 250 to 500 characters.</small>
     <textarea class="form-control" rows="10" id="des" name="description" placeholder="Describe the service that you offer here"></textarea>
- </div>
+  </div>
+
 <br><br>
- <div class="form-group">
-    <label for="slee">Are you offering discount?</label><br>
+
+  <div class="form-group">
+    <label for="slee">Are you offering a discount specifically for your neighbors?</label><br>
     <input type="radio" name="discount" value="1" checked> YES<br>
     <input type="radio" name="discount" value="0"> NO
   </div>
 
+  <br><br>
 
-<br><br>
-
-
-<button type="submit" class="btn btn-lg btn-default" >Add My Service</button>
-
-
+  <button type="submit" class="btn btn-lg btn-default">Add My Service</button>
 </form>
+</div>
