@@ -1,4 +1,6 @@
 var db = require("../models");
+var nodeMailer = require("../config/nodeMailer")
+
 
 var ratingController = {
 	likeCreate : function(req, res, cb){
@@ -176,6 +178,13 @@ var ratingController = {
 
 		console.log(req.body.created_at);
 
+
+        var sender = req.session.user.email;// sender address
+        var receiver = req.body.serviceProviderEmail; // list of receivers
+        var messageSubject = "U have receive an unlike"; // Subject line
+        var message = "HEY... Someone hates You"; // plain text body
+
+
 		db.userRating.findOne({
 			
 			where: {customerId: req.session.user.userId,
@@ -186,7 +195,7 @@ var ratingController = {
                 console.log("user");
                 console.log(user);
 
-                if (user == null || user == undefined) {
+                if (user == null || user == undefined){
 
                 		  ratingController.dislikeCreate(req, res, function(user){
                                 
@@ -196,7 +205,16 @@ var ratingController = {
 
                                         console.log("after created");
 
-                                        res.render("dislikeMessage");
+                                        
+
+                                        nodeMailer(sender, receiver, messageSubject, message,
+                                        function(info){
+
+                                            res.render("dislikeMessage");
+
+
+                                        });
+
                                         
                                      }else if (user.error) {
                                         console.log(user.error);
@@ -218,7 +236,16 @@ var ratingController = {
 
                                         console.log("after created");
 
-                                        res.render("dislikeMessage");
+                                        
+
+                                        nodeMailer(sender, receiver, messageSubject, message,
+                                        function(info){
+
+                                                res.render("dislikeMessage");
+
+
+                                        });
+                                        
                                         
                                      }else if (user.error) {
                                         console.log(user.error);

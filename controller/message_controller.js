@@ -3,9 +3,8 @@
 
 var db = require("../models");
 
-var nodemailer = require("nodemailer");
+var nodeMailer = require("../config/nodeMailer")
 
-var bunyan = require("bunyan");
 
 module.exports = {
 
@@ -22,35 +21,20 @@ module.exports = {
 	sendMessage : function(req, res){
 
 		console.log(req.body);
-	
 
-// create reusable transporter object using the default SMTP transport
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'rating.neighborhood.network@gmail.com',
-        pass: 'utCodingCamp'
-    }
-});
+        var sender = req.session.user.email;// sender address
+        var receiver = req.body.receiverEmail; // list of receivers
+        var messageSubject = req.body.subject; // Subject line
+        var message = req.body.emailBody; // plain text body
 
-// setup email data with unicode symbols
-var mailOptions = {
-    from: req.session.user.email, // sender address
-    to: req.body.receiverEmail, // list of receivers
-    subject: req.body.subject, // Subject line
-    text: req.body.emailBody, // plain text body
-    // html: '<b>Hello world ?</b>' // html body
-};
+       nodeMailer(sender, receiver, messageSubject, message,
+        function(info){
 
-// send mail with defined transport object
-transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-        return console.log(error);
-    }else{
- console.log('Message %s sent: %s', info.messageId, info.response);
-    	res.redirect("/service1")
-    }
-   
-});
+            res.redirect("/service1")
+
+
+        });
+
+ 
 }
 };

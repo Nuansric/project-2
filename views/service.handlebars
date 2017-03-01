@@ -42,6 +42,7 @@
                                    <p><b>Dislikes: </b> {{this.disLikeCount}}</p>
 
                                   <form action="/dislike" method="POST">
+                                  <input type="hidden" name="serviceProviderEmail" value="{{this.email}}">
                                   <input type="hidden" name="descriptionId" value="{{this.descriptionId}}">
                                   <button type="submit">Dislike</button>
                                   </form>
