@@ -171,12 +171,6 @@ verifyPhoneToken : function (req, res){
 
                                         console.log("after created");
 
-                                        // console.log(req.session);
-                                        
-                                        // createSession(req, res, user);
-
-                                        // console.log(req.session.userId);
-
                                         res.send("/login");
                                         
                                      }else if (user.error) {

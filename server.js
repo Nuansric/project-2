@@ -4,6 +4,21 @@
 
 // Dependencies
 
+// =============================================================
+// var config = {
+//   apiKey: "AIzaSyDuq0aKWmRuaH8d9SqdOkjteVP0uNmuxf8",
+//   authDomain: "neighbornetwork-5a6c7.firebaseapp.com",
+//   databaseURL: "https://neighbornetwork-5a6c7.firebaseio.com",
+//   storageBucket: "neighbornetwork-5a6c7.appspot.com",
+//   messagingSenderId: "748426580419"
+// };
+// var admin = require("firebase-admin");
+// var serviceAccount = require("./neighbornetwork-5a6c7-firebase-adminsdk-gb6ax-cdb6f8c596.json");
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://neighbornetwork.firebaseio.com"
+// });
+
 var express = require("express");
 var bodyParser = require("body-parser");
 var db = require("./models");
@@ -77,6 +92,7 @@ require("./routes/searchRoutes.js")(app);
 require("./routes/addServiceRoutes.js")(app);
 require("./routes/profileRoutes.js")(app);
 require("./routes/messageRoutes.js")(app);
+require("./routes/ratingRoutes.js")(app);
 
 
 

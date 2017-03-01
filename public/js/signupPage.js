@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+var isPasswordMatched = false;
 	
 function validateUserInput() {
 	var validInput = true;
@@ -51,7 +52,30 @@ $("#checkUsername").on("click", function(){
 
 }
 });
+$("#reTypePassword").on("keyup", function(){
+
+	var password1 = $("#password").val().trim();
+	var password2 = $("#reTypePassword").val().trim();
+
+	if(password1 == password2){
+
+		$("#isUsernameAvailable").html("Password match!");
+		isPasswordMatched = true;
+
+	}else{
+		$("#isUsernameAvailable").html("Your Password do not match!")
+		isPasswordMatched = false
+	}
+
+
+
+});
+
+
 	$("#createProfile").on("click", function(){
+		console.log("inside on click");
+		console.log(validateUserInput());
+		console.log(isPasswordMatched);
 
 		var newUser = {
 				userName: $("#userName").val().trim(),
@@ -69,7 +93,11 @@ $("#checkUsername").on("click", function(){
 			}
 
 
-		if(validateUserInput() === true){
+		if(validateUserInput() === true && isPasswordMatched == true){
+			console.log("inside validation");
+			console.log(validateUserInput());
+			console.log(isPasswordMatched);
+
 
 		var phoneObj ={ phone: $("#phone").val().trim()};
 	
@@ -87,52 +115,52 @@ $("#checkUsername").on("click", function(){
 					console.log("inside if data.success" + (data.success));
 			
 
-		$("#token").val("");
-		$("#isRightPhone").empty();
+						$("#token").val("");
+						$("#isRightPhone").empty();
 
-		$("#verifyPhoneToken").modal();
+						$("#verifyPhoneToken").modal();
 
-		
+								
 
-		
-		$("#tokenVerification").on("click", function(){
+				
+						$("#tokenVerification").on("click", function(){
 
-			newUser.token = $("#token").val().trim();
-			
-			console.log("afrer token" + newUser);
+							newUser.token = $("#token").val().trim();
+							
+							console.log("afrer token" + newUser);
 
-			$.post("/createProfile", newUser, function(data){
-				console.log("/createProfile");
+							$.post("/createProfile", newUser, function(data){
+								console.log("/createProfile");
 
-				newUser={};
+								newUser={};
 
-				console.log("beofre if");
+								console.log("beofre if");
 
-				console.log(data);
+								console.log(data);
 
-				if((data)&&(data.error)){
-					console.log("GOT ERROR");
+								if((data)&&(data.error)){
+									console.log("GOT ERROR");
 
-					$("#isRightPhone").html(data.error);
-				}else{
-					console.log("before window");
-					window.location = data;
-				}
-				console.log("outside");		
-			});
+									$("#isRightPhone").html(data.error);
+								}else{
+									console.log("before window");
+									window.location = data;
+								}
+								console.log("outside");		
+							});
 
-		});
-		}//if(data)
+						});//token
+				}//if(data success)
 		//if 200
-		else{
-			//if the sms was not sent successfully
-			$("#isRightInput").html(data.error);
-		}
-	}
+					else{
+						//if the sms was not sent successfully
+						$("#isRightInput").html(data.error);
+					}
+			}
 
-		});
+		}); //post sms
 	}else{
-			$("#isRightInput").html("Please enter your username and password to login");
+			$("#isRightInput").html("Please verify your input and try again");
 	}
 	});
 

@@ -24,11 +24,26 @@
                                    <p><b>Discount Offer:  </b>NO</p>
                                   {{/if}}
 
+
                                   <form action="/leaveMessage" method="POST">
                                   <input type="hidden" name="receiverId" value="{{this.userId}}">
                                  <!--  <input type="hidden" name="senderId" value="{{locals.user.userId}}"> -->
                                   <input type="hidden" name="receiverEmail" value="{{this.email}}">
                                   <button type="submit">Leave Message</button>
+                                  </form>
+
+                                   <p><b>Likes: </b> {{this.likeCount}}</p>
+
+                                  <form action="/like" method="POST">
+                                  <input type="hidden" name="descriptionId" value="{{this.descriptionId}}">
+                                  <button type="submit">Like</button>
+                                  </form>
+
+                                   <p><b>Dislikes: </b> {{this.disLikeCount}}</p>
+
+                                  <form action="/dislike" method="POST">
+                                  <input type="hidden" name="descriptionId" value="{{this.descriptionId}}">
+                                  <button type="submit">Dislike</button>
                                   </form>
                             
                                </div>

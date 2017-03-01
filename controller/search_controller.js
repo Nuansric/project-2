@@ -79,7 +79,12 @@ renderSearchBar : function(req, res){
 
 findService : function(req, res){
 
-		var serviceID = req.body.serviceId;
+
+
+		req.session.user.selectedService = (req.body.serviceId == undefined?req.session.user.selectedService:req.body.serviceId);
+    var serviceID = req.session.user.selectedService;
+
+    console.log(req.session.user);
 
 		console.log(req.body);
 

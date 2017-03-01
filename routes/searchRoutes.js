@@ -16,6 +16,9 @@ app.get("/search", loggedInCheck.requireLogin, searchController.renderSearchBar)
 
 app.post("/service", loggedInCheck.requireLogin, searchController.findService);
 
+app.get("/service1", loggedInCheck.requireLogin, searchController.findService);
+
+
 
 
 
