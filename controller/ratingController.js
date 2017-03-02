@@ -181,8 +181,8 @@ var ratingController = {
 
         var sender = req.session.user.email;// sender address
         var receiver = req.body.serviceProviderEmail; // list of receivers
-        var messageSubject = "U have receive an unlike"; // Subject line
-        var message = "HEY... Someone hates You"; // plain text body
+        var messageSubject = "An Important Rating Message from The Neighbor Network"; // Subject line
+        var message = "Recently, a user went onto our site and gave you a 'dislike' rating. At The Neighbor Network, we understand that some less than par business transactions can occur for many different reasons. We give our service providers two days to respond directly to the user in an attempt to correct the issue. The user will be prompted two days from now to finalize their rating, where they can keep the rating the same, and post what they have already written, (You don’t want that!) or change it as a result of you making things right with your customer. Here at The Neighbor Network, we want to keep business in our own neighborhoods, and keep our service providers and customers happy. Sincerely, the Neighbor Network."; // plain text body
 
 
 		db.userRating.findOne({
