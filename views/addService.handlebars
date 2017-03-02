@@ -1,44 +1,36 @@
-<h1>Add Service</h1>
-
-  <div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Add a Service
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-
-    {{#each services}}
-    <li value="{{this.dataValues.serviceId}}">{{this.dataValues.serviceName}}</li>
-
-    {{/each}}
-  </ul>
-</div>
+<div class="wow bounceIn text-center" data-wow-offset="0" data-wow-delay="0.8s">
+<h1 style="color: #f7b733" class="text-center">Add Service</h1>
 
 
 <form action="/addedService" method="POST">
-<select data-placeholder="" class="userInput" name="serviceId">
+  <label for="">Service Category</label>
+  <br>
+  <select data-placeholder="" class="chosen-select" name="serviceId" style="width:350px;">
   <option value="">Select Service Category</option>
-  {{#each services}}
-      
-  <option value="{{this.dataValues.serviceId}}">{{this.dataValues.serviceName}}</option>
-            
-  {{/each}}
-</select>
+    {{#each services}}
+      <option value="{{this.dataValues.serviceId}}">{{this.dataValues.serviceName}}</option>      
+    {{/each}}
+  </select>
 
-<div class="form-group">
+<BR><BR>
+
+  <div class="form-group">
     <label for="des">Service Description</label>
-    <input type="text" id="des" name="description">
- </div>
-
- <div class="form-group">
-    <label for="slee">Are you offering discount?</label><br>
-    <input type="radio" name="discount" value="1" checked>YES<br>
-    <input type="radio" name="discount" value="0">NO
+    <br>
+    <small>Here, we give our service providers an opportunity to explain what they do. Think of this as an opportunity to differentiate yourself from others that provide similar services to yours. We recommend somewhere between 250 to 500 characters.</small>
+    <textarea class="form-control" rows="10" id="des" name="description" placeholder="Describe the service that you offer here"></textarea>
   </div>
-
 
 <br><br>
 
+  <div class="form-group">
+    <label for="slee">Are you offering a discount specifically for your neighbors?</label><br>
+    <input type="radio" name="discount" value="1" checked> YES<br>
+    <input type="radio" name="discount" value="0"> NO
+  </div>
 
-<button type="submit" class="btn btn-lg btn-default" >Add My Service</button>
+  <br><br>
 
-
+  <button type="submit" class="btn btn-lg btn-default">Add My Service</button>
 </form>
+</div>

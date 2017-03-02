@@ -1,51 +1,64 @@
  <div class="container">
    <div class="row">
-      
-      <div class="text-center"><h1>{{serviceName}}</h1></div>
+      <br>
+      <div class="text-center"><h1 style="color: #f7b733" >{{serviceName}}</h1></div>
         
    </div>
 </div>
-
+<br>
+<br>
  <div class="container">
    <div class="row">
     {{#each neighborFound}}
        <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                 <div class="col-lg-1"></div>
+                <div class="col-lg-10">
                     <div class="column">
-                        <div class="panel panel-default">
-                          <div class="panel-heading">{{this.firstName}}</div>
-                              <div class="panel-body" style="margin:10px;">
-                                  <BR><img src="img/logo.png" style="float:right; margin-right: 25px;">
-                                  <p><b>Service Description:</b><br>{{this.description}}</p>
+                        <div class="panel panel-default" >
+                          <div class="panel-heading" style="color: black; font-weight: bold;">{{this.firstName}}</div>
+                              <div class="panel-body" style="padding-bottom: 0px; text-align: center; ">
+                                  <!-- <BR><img src="img/logo.png" style="float:right; margin-right: 25px;"> -->
+                                  <p><b>Service Description</b><br>{{this.description}}</p>
                                   {{#if this.discount}}  
-                                  <p><b>Discount Offer:  </b>YES</p>
+                                  <p><b>Discount Offer  </b><br> YES</p>
                                   {{else}}
-                                   <p><b>Discount Offer:  </b>NO</p>
+                                   <p><b>Discount Offer:  </b><br>NO</p>
                                   {{/if}}
+                                  <hr>
+                                 <div class="row">
+                                          
+                                        <div class="col-lg-4">
+                                        <form action="/like" method="POST" style="margin-bottom: 0px; margin-top: 10px;">
+                                        <input type="hidden" name="descriptionId" value="{{this.descriptionId}}">
+                                        <button style="border: none; background-color: white;"><img style="width: 25%; height: 25%; display: block; margin:auto;" src="img/thumbUp.jpg"></button>
+                                         <p style="text-align: center"><b>Likes: </b> {{this.likeCount}}</p>
+                                        </form> 
+                                        </div>
+                                       
+                                         
+                                        <div class="col-lg-4">
+                                        <form action="/dislike" method="POST" style="margin-bottom: 0px; margin-top: 10px;">
+                                        <input type="hidden" name="serviceProviderEmail" value="{{this.email}}">
+                                        <input type="hidden" name="descriptionId" value="{{this.descriptionId}}">
+                                        <button style="border: none; background-color: white;"><img style="width: 25%; height: 25%; display: block; margin:auto;" src="img/thumbDown.jpg"></button>
+                                       <!--  <button type="submit">Dislike</button> -->
+                                        <p style="text-align: center"><b>Dislikes: </b> {{this.disLikeCount}}</p>
+                                        </form>
+                                        
+                                      </div>
 
-
-                                  <form action="/leaveMessage" method="POST">
-                                  <input type="hidden" name="receiverId" value="{{this.userId}}">
-                                 <!--  <input type="hidden" name="senderId" value="{{locals.user.userId}}"> -->
-                                  <input type="hidden" name="receiverEmail" value="{{this.email}}">
-                                  <button type="submit">Leave Message</button>
-                                  </form>
-
-                                   <p><b>Likes: </b> {{this.likeCount}}</p>
-
-                                  <form action="/like" method="POST">
-                                  <input type="hidden" name="descriptionId" value="{{this.descriptionId}}">
-                                  <button type="submit">Like</button>
-                                  </form>
-
-                                   <p><b>Dislikes: </b> {{this.disLikeCount}}</p>
-
-                                  <form action="/dislike" method="POST">
-                                  <input type="hidden" name="descriptionId" value="{{this.descriptionId}}">
-                                  <button type="submit">Dislike</button>
-                                  </form>
-                            
+                                      <div class="col-lg-4">
+                                        <form action="/leaveMessage" method="POST" style="margin-bottom: 0px; margin-top: 10px;">
+                                        <input type="hidden" name="receiverId" value="{{this.userId}}">
+                                       <!--  <input type="hidden" name="senderId" value="{{locals.user.userId}}"> -->
+                                        <input type="hidden" name="receiverEmail" value="{{this.email}}">
+                                        <button style="border: none; background-color: white;"><img style="width: 25%; height: 25%; display: block; margin:auto;" src="img/mail.jpg"></button>
+                                        <p style="text-align: center"><b>Contact Service Provider</b></p>
+                                        </form>
+                                         
+                                        </div>
+                                </div>       
                                </div>
                        
                         </div>
@@ -53,9 +66,12 @@
 
                    
             </div>
+            <div class="col-lg-1"></div>
         </div>
       </div>
         {{/each}}
+</div>
+</div>
 
 
 
