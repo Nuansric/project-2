@@ -13,6 +13,21 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link href="css/style.css" rel="stylesheet">  
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700i,800" rel="stylesheet">
+
+    <!--=======Typed js===========-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/responsive-slider.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script>wow = new WOW({}).init();</script>
+    <!--<script src="js/jquery-2.1.1.min.js"></script>-->
+    <!--<script src="jquery.js"></script>-->
+    <script src="js/typed.js"></script>
+    <script src="js/typedJavascript.js"></script>
+
+    
     <!-- =======================================================
         Theme Name: Resi
         Theme URL: https://bootstrapmade.com/resi-free-bootstrap-html-template/
@@ -24,16 +39,21 @@
         <header>
             <div class="container">
                 <div class="row">
-                <!--sticky header-->
+                    <!--==============STICKY HEADER=========-->
                     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+
                         <div class="container-fluid">
-                            <div class="navbar-header">
-                               <a href="home.html"><img src="./img/theNeighborNetwork.png" height="80px"/></a>
+                         <div class="navbar-header">
+                            <div class="navbar-brand">
+                                <a href="home.html"><h1>The Neighbor Network</h1></a>
                             </div>
+                        </div>
                         <div class="menu">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation"><a href="/login">Login</a></li> 
                                 <li role="presentation"><a href="/signup">Signup</a></li>
+
+
                             </ul>
                         </div>
                     </div>   
@@ -44,44 +64,44 @@
     </header>
     
     <div class="slider">        
-            <div id="about-slider">
+        <div id="about-slider">
 
-                <div id="carousel-slider" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators visible-xs">
-                        <li data-target="#carousel-slider" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-slider" data-slide-to="1"></li>
-                        <li data-target="#carousel-slider" data-slide-to="2"></li>
-                    </ol>
+            <div id="carousel-slider" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+              <!--  <ol class="carousel-indicators visible-xs">
+                    <li data-target="#carousel-slider" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-slider" data-slide-to="1"></li>
+                    <li data-target="#carousel-slider" data-slide-to="2"></li>
+                </ol>
+                <div class="item"> -->
+                    <img src="img/slide2.jpg" class="img-responsive" alt=""> 
+                    <div class="carousel-caption">
+                        <div class="section no-pad-bot" id="index-banner">
 
-                    <div class="carousel-inner">
-                        <div class="item active">                       
-                            <img src="img/homepage.jpeg" class="img-responsive" alt=""> 
-                            <div class="carousel-caption">
-                                <div class="jumbotron clearfix"  id="jumbo">
-                                    <table id="white" class="table table-condensed" id="table">
-                                        <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.5s">                                
-                                            <h2><span>Services That You Need, Right Where You Live</span></h2>
-                                        </div>
-                                        <div class="col-md-10 col-md-offset-1">
-                                            <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.6s">                                
-                                                <p>Expertise Around the Corner</p>
-                                            </div>
-                                        </div>
-                                        <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.9s">                                
+                        
+    <!--==========TYPED JS SAMPLE CODE=============-->
+    <div class="jumbotron clearfix"  id="jumbo">
+                <table id="white" class="table table-condensed" id="table">
+    <!-- <div class="type-wrap"> -->
+    <div class="col-md-10 col-md-offset-1">
+        <div id="typed-strings">
+            <h1><span>Looking for a tutor?</span></h1>
+            <p>Looking for a real estate agent?</p>
+            <p>Looking for a plumber?</p>
+            <p>Looking for a dog walker?</p>
 
-                                        </div>
-                                    </table> <!-- end id for jumbotron-->
-                                </div> <!--end jumbotron-->
-                            </div> <!--end carousel slider-->
-                        </div> <!--end carousel caption-->
 
-                        <div class="item">
-                            <img src="img/slide2.jpg" class="img-responsive" alt=""> 
-                            <div class="carousel-caption">
-                               <div class="jumbotron clearfix"  id="jumbo">
-                                <table id="white" class="table table-condensed" id="table">
-                                   <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.5s">                                
+        </div>
+        <span id="typed" style="white-space:pre;"></span>
+    </div>
+ </table>
+</div>
+
+    <!--==================RESI THEME CAROUSEL============-->
+                               <!--<div class="jumbotron clearfix"  id="jumbo">
+                               <table id="white" class="table table-condensed" id="table">-->
+                                 <!--<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.5s">
+
                                     <h2><span>Services That You Need, Right Where You Live</span></h2>
                                 </div>
                                 <div class="col-md-10 col-md-offset-1">
@@ -89,34 +109,38 @@
                                         <p>Expertise Around the Corner</p>
                                     </div>
                                 </div>
-                                <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.9s">                                
+                                <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.9s"> -->                               
 
-                                </div>
-                            </table>
-                        </div>
-                    </div>
-                </div> 
-            </div>
+                                    <!--</div>-->
+                                    <!-- </table>-->
+                                <!-- </div> -->
+                            <!-- </div> -->
 
-            <a class="left carousel-control hidden-xs" href="#carousel-slider" data-slide="prev">
-                <i class="fa fa-angle-left"></i> 
-            </a>
+                        <!-- </div>  -->
+                    <!-- </div> -->
 
-            <a class=" right carousel-control hidden-xs"href="#carousel-slider" data-slide="next">
-                <i class="fa fa-angle-right"></i> 
-            </a>
-        </div> <!-- Close Carousel Inner -->
-    </div> <!-- Close Carousel Slider -->
-</div> <!-- Close about slider -->
-</div><!-- Close slider -->
-<!-- ===============================ABOUT THE APP SECTION======================-->
- <!-- Services Section -->
+
+                    <!-- <a class="left carousel-control hidden-xs" href="#carousel-slider" data-slide="prev"> -->
+                        <!-- <i class="fa fa-angle-left"></i>  -->
+                    <!-- </a> -->
+
+                    <!-- <a class=" right carousel-control hidden-xs"href="#carousel-slider" data-slide="next"> -->
+                        <!-- <i class="fa fa-angle-right"></i>  -->
+                    <!-- </a> -->
+                <!-- </div>  -->
+            </div> 
+        </div> 
+    </div> 
+    <!-- ===============================ABOUT THE APP SECTION======================-->
+
+
+    <!-- Services Section -->
     <section id="services">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3"></div>
                 <div class="col-lg-6 text-center">
-                    <h1 class="section-heading">Do Business With Your Neighbor </h1>
+                    <h1 class="section-heading">Do Business with your Neighbor </h1>
                     <p>At the Neighbor Network, we believe in the power of local business. That is why we have developed a platform for neighbors to be able to find each other by profession, and communicate with them directly.</p>
                     <h6 class="section-subheading text-muted"> </h6>
                 </div>
@@ -151,68 +175,21 @@
         </div>
     </section>
 
-<hr/>
-   <div class="container text-center">
-         <h1 class="section-heading">What Our Users Are Saying </h1>
-            <div class="row text-center">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-8">
-                    <h4 class="service-heading">Mary B.</h4>
-                    <p class="text-muted">"The power of Neighbor Network is that I can go on, search for a service, and find someone that lives close by to do business with. It doesn't include all the drama of a social network either. Clean and Simple."</p>
-                </div>
-                <div class="col-lg-2"></div>
-            </div>
-            <div class="row text-center">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-8">
-                    <h4 class="service-heading">John F.</h4>
-                    <p class="text-muted">"As a mechanic, the Neighbor Network made it easy to post my service. I can help my neighbors out with their automotive problems. The Neighbor Network has really allowed me to become a trusted resource for all of our car needs."</p>
-                </div>
-                <div class="col-lg-2"></div>
-            </div>
-            <div class="row text-center">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-8">
-                    <h4 class="service-heading">Barbara. R.</h4>
-                    <p class="text-muted">"We moved from Tampa, FL to Denver, CO, and didn't know anyone. I went onto the Neighbor Network, and signed up for an account. I was able to find all sourts of services offered from my next door neighbors. Not only did the Neighbor Network allow me to get services that I needed done, it also helped me find a trusted resource of people to use again and again, that happen to be trusted neighbors.</p>
-                </div>
-                <div class="col-lg-2"></div>
-            </div>
+    <hr/>
+    <div class="container text-center">
+       <h1 class="section-heading">What our users are saying </h1>
+       <div class="row text-center">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <h4 class="service-heading">Mary B.</h4>
+            <p class="text-muted">"The power of Neighbor Network is that I can go on, search for a service, and find someone that lives close by to do business with. It doesn't include all the drama of a social network either. Clean and Simple."</p>
         </div>
-
-
-<!--============================================start footer=================================-->
-<footer>            
-    <div class="sub-footer">
-        <div class="container">
-            <div class="col-lg-12">
-                <div class="copyright">
-                    <h3>&copy;The Neighbor Network</h3>
-                    <p>&copy;Resi Theme - All right reserved.</p>
-                    <div class="credits">
-                                <!-- 
-                                    All the links in the footer should remain intact. 
-                                    You can delete the links only if you purchased the pro version.
-                                    Licensing information: https://bootstrapmade.com/license/
-                                    Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Resi
-                                -->
-                                <a href="https://bootstrapmade.com/free-one-page-bootstrap-themes-website-templates/">One Page Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </footer>
-        <!--end footer-->
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="js/jquery-2.1.1.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/responsive-slider.js"></script>
-        <script src="js/wow.min.js"></script>
-        <script>wow = new WOW({}).init();</script>
-
-    </body>
-    </html>
+        <div class="col-lg-2"></div>
+    </div>
+    <div class="row text-center">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <h4 class="service-heading">John F.</h4>
+            <p class="text-muted">"As a mechanic, the Neighbor Network made it easy to post my service. I can help my neighbors out with their automotive problems. The Neighbor Network has really allowed me to become a trusted resource for all of our car needs."</p>
+        </div>
+        <div class="col-lg-2">

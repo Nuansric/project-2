@@ -1,4 +1,15 @@
-<h1>Profile Information</h1>
+
+<div class="container">
+            <div class="row">
+                 <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <div class="column">
+                        <div class="panel panel-default" >
+                           <div class="panel-heading" style="color: black; font-weight: bold;">{{this.firstName}}</div>
+                              <div class="panel-body" style="padding-bottom: 0px; text-align: center;">
+<div class="wow bounceIn text-center" data-wow-offset="0" data-wow-delay="0.8s">
+<h1 style="color:#f7b733" class="text-center">Profile Information</h1>
+
 
 <p><b>Username: </b> {{currentUser.dataValues.userName}}</p>
 <p><b>First Name: </b> {{currentUser.dataValues.firstName}}</p>
@@ -12,8 +23,7 @@
 <p><b>Email: </b> {{currentUser.dataValues.email}}</p>
 
 <br><br>
-
-<h1>Your Services</h1>
+<h1 style="color:#f7b733" class="text-center">Services You Offer</h1>
 <ol>
 {{#each currentUser.userServices}}
 <li><br>
@@ -28,3 +38,9 @@
 <form action="/delete?_method=DELETE" method="POST">
 	<button type="submit" class="btn btn-lg btn-danger" id="deleteButton">DELETE ACCOUNT</button>
 </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
