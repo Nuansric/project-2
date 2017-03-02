@@ -1,31 +1,21 @@
+<h1>Profile Information</h1>
 
-<div class="container">
-            <div class="row">
-                 <div class="col-lg-1"></div>
-                <div class="col-lg-10">
-                    <div class="column">
-                        <div class="panel panel-default" >
-                           <div class="panel-heading" style="color: black; font-weight: bold;">{{this.firstName}}</div>
-                              <div class="panel-body" style="padding-bottom: 0px; text-align: center;">
-<div class="wow bounceIn text-center" data-wow-offset="0" data-wow-delay="0.8s">
-<h1 style="color:#f7b733" class="text-center">Profile Information</h1>
-
-
-<p><b>Username: </b> {{currentUser.dataValues.userName}}</p>
-<p><b>First Name: </b> {{currentUser.dataValues.firstName}}</p>
-<p><b>Address Line 1: </b> {{currentUser.dataValues.address_1}}</p>
-<p><b>Address Line 2: </b> {{currentUser.dataValues.address_2}}</p>
-<p><b>City: </b> {{currentUser.dataValues.city}}</p>
-<p><b>State: </b> {{currentUser.dataValues.state}}</p>
-<p><b>Zip Code: </b> {{currentUser.dataValues.zipCode}}</p>
-<p><b>Country: </b> {{currentUser.dataValues.country}}</p>
-<p><b>Phone: </b> {{currentUser.dataValues.phone}}</p>
-<p><b>Email: </b> {{currentUser.dataValues.email}}</p>
+<p><b>Username: </b> {{currentUserInfo.dataValues.userName}}</p>
+<p><b>First Name: </b> {{currentUserInfo.dataValues.firstName}}</p>
+<p><b>Address Line 1: </b> {{currentUserInfo.dataValues.address_1}}</p>
+<p><b>Address Line 2: </b> {{currentUserInfo.dataValues.address_2}}</p>
+<p><b>City: </b> {{currentUserInfo.dataValues.city}}</p>
+<p><b>State: </b> {{currentUserInfo.dataValues.state}}</p>
+<p><b>Zip Code: </b> {{currentUserInfo.dataValues.zipCode}}</p>
+<p><b>Country: </b> {{currentUserInfo.dataValues.country}}</p>
+<p><b>Phone: </b> {{currentUserInfo.dataValues.phone}}</p>
+<p><b>Email: </b> {{currentUserInfo.dataValues.email}}</p>
 
 <br><br>
-<h1 style="color:#f7b733" class="text-center">Services You Offer</h1>
+
+<h1>Your Services</h1>
 <ol>
-{{#each currentUser.userServices}}
+{{#each currentUserInfo.userServices}}
 <li><br>
 <b>Service Description:</b>  {{this.description}}
 <br>
@@ -38,9 +28,3 @@
 <form action="/delete?_method=DELETE" method="POST">
 	<button type="submit" class="btn btn-lg btn-danger" id="deleteButton">DELETE ACCOUNT</button>
 </form>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>

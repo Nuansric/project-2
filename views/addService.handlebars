@@ -3,7 +3,7 @@
 
 
 <form action="/addedService" method="POST">
-  <label for="">Service Category</label>
+  <label for="">Service Category*</label>
   <br>
   <select data-placeholder="" class="chosen-select" name="serviceId" style="width:350px;">
   <option value="">Select Service Category</option>
@@ -12,24 +12,41 @@
     {{/each}}
   </select>
 
-<BR><BR>
+<br><br><br>
 
-  <div class="form-group">
-    <label for="des">Service Description</label>
+   <div class="form-group">
+    <label for="des">Service Description*</label>
     <br>
-    <small>Here, we give our service providers an opportunity to explain what they do. Think of this as an opportunity to differentiate yourself from others that provide similar services to yours. We recommend somewhere between 250 to 500 characters.</small>
-    <textarea class="form-control" rows="10" id="des" name="description" placeholder="Describe the service that you offer here"></textarea>
+    <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+    
+    <small>Here, we give our service providers an opportunity to explain what they do. Think of this as an opportunity to differentiate yourself from others that provide similar services to yours. Maximum of 250 characters.</small>
+    <br>
+ 
+    <textarea class="form-control" rows="10" id="des" name="description" placeholder="Describe the service that you offer here" maxlength="250"></textarea>
+
+    </div>
+    <div class="col-lg-2"></div></div>
   </div>
 
-<br><br>
+
 
   <div class="form-group">
     <label for="slee">Are you offering a discount specifically for your neighbors?</label><br>
-    <input type="radio" name="discount" value="1" checked> YES<br>
-    <input type="radio" name="discount" value="0"> NO
+    <div class="row">
+         <div class="col-lg-5"></div>
+        <div class="col-lg-1">
+        <input type="radio" name="discount" value="1" checked> YES      
+        </div>
+        <div class="col-lg-1">
+        <input type="radio" name="discount" value="0"> NO
+        </div>
+         <div class="col-lg-5"></div>
+    </div>
   </div>
 
-  <br><br>
+  <br>
 
   <button type="submit" class="btn btn-lg btn-default">Add My Service</button>
 </form>

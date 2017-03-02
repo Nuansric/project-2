@@ -3,17 +3,17 @@ var nodeMailer = require("../config/nodeMailer")
 
 
 var ratingController = {
-	likeCreate : function(req, res, cb){
-		
-	db.userRating.create({
+    likeCreate : function(req, res, cb){
+        
+    db.userRating.create({
 
-    	isLiked: true,
-    	customerId: req.session.user.userId,
-    	// createdAt: req.body.created_at,
-     //  	updatedAt: req.body.created_at,
-      	userServiceId : req.body.descriptionId
+        isLiked: true,
+        customerId: req.session.user.userId,
+        // createdAt: req.body.created_at,
+     //     updatedAt: req.body.created_at,
+        userServiceId : req.body.descriptionId
    
-	}).then(function(user) {
+    }).then(function(user) {
          
          cb(user);
        
@@ -22,19 +22,19 @@ var ratingController = {
         cb({error: error.errors[0].message});
     })
 
-	},
+    },
 
-	dislikeCreate : function(req, res, cb){
-		
-	db.userRating.create({
+    dislikeCreate : function(req, res, cb){
+        
+    db.userRating.create({
 
-    	isLiked: false,
-    	customerId: req.session.user.userId,
-    	// createdAt: req.body.created_at,
-     //  	updatedAt: req.body.created_at,
-      	userServiceId : req.body.descriptionId
+        isLiked: false,
+        customerId: req.session.user.userId,
+        // createdAt: req.body.created_at,
+     //     updatedAt: req.body.created_at,
+        userServiceId : req.body.descriptionId
    
-	}).then(function(user) {
+    }).then(function(user) {
          
          cb(user);
        
@@ -43,19 +43,19 @@ var ratingController = {
         cb({error: error.errors[0].message});
     })
 
-	},
+    },
 
-	likeUpdate : function(req, res, cb){
-		
-	db.userRating.update({
+    likeUpdate : function(req, res, cb){
+        
+    db.userRating.update({
       isLiked: true,
     }, {
       where: {
-      	customerId: req.session.user.userId,
-      	$and: {
-      		userServiceId: req.body.descriptionId
-      	}
-	}		
+        customerId: req.session.user.userId,
+        $and: {
+            userServiceId: req.body.descriptionId
+        }
+    }       
     }).then(function(user) {
          
          cb(user);
@@ -65,16 +65,16 @@ var ratingController = {
         cb({error: error.errors[0].message});
     })
 
-	},
+    },
 
-	dislikeUpdate : function(req, res, cb){
-		
-	db.userRating.update({
+    dislikeUpdate : function(req, res, cb){
+        
+    db.userRating.update({
       isLiked: false,
     }, {
       where: {customerId: req.session.user.userId,
-			$and: [{userServiceId: req.body.descriptionId}]
-			}
+            $and: [{userServiceId: req.body.descriptionId}]
+            }
     }).then(function(user) {
          
          cb(user);
@@ -84,23 +84,23 @@ var ratingController = {
         cb({error: error.errors[0].message});
     })
 
-	},
+    },
 
 
 
-	likeRating : function(req, res){
-		console.log(req.body);
+    likeRating : function(req, res){
+        console.log(req.body);
 
-		console.log(req.body.created_at);
+        console.log(req.body.created_at);
 
-		db.userRating.findOne({
-			
-			where: {
-      	customerId: req.session.user.userId,
-      	$and: {
-      		userServiceId: req.body.descriptionId
-      	}
-	}		
+        db.userRating.findOne({
+            
+            where: {
+        customerId: req.session.user.userId,
+        $and: {
+            userServiceId: req.body.descriptionId
+        }
+    }       
             }).then(function(user){
 
                 console.log("user");
@@ -108,11 +108,11 @@ var ratingController = {
 
                 if (user == null || user == undefined) {
 
-                		  ratingController.likeCreate(req, res, function(user){
+                          ratingController.likeCreate(req, res, function(user){
                                 
                                 console.log("it is null");
                                      if(!user.error){
-                                     	//email serviceProvider
+                                        //email serviceProvider
 
                                         console.log("after created");
 
@@ -121,7 +121,7 @@ var ratingController = {
                                      }else if (user.error) {
                                         console.log(user.error);
                                         //res.json({error: user.error});
-                                         res.render("/errorPage");
+                                         res.redirect("/errorPage");
                                         
                                      }
                           });
@@ -129,11 +129,11 @@ var ratingController = {
                  }
                 else if (user){
 
-                	ratingController.likeUpdate(req, res, function(user){
+                    ratingController.likeUpdate(req, res, function(user){
                                 
                                 
                                      if(!user.error){
-                                     	//email serviceProvider
+                                        //email serviceProvider
 
                                         console.log("after created");
 
@@ -142,7 +142,7 @@ var ratingController = {
                                      }else if (user.error) {
                                         console.log(user.error);
                                         //res.json({error: user.error});
-                                         res.render("/errorPage");
+                                          res.redirect("/errorPage");
                                         
                                      }
                           });
@@ -153,15 +153,15 @@ var ratingController = {
 
     // db.userRating.create({
 
-    // 	isLiked: true,
-    // 	customerId: req.session.user.userId,
-    // 	// createdAt: req.body.created_at,
-    //  //  	updatedAt: req.body.created_at,
-    //   	userServiceId : req.body.descriptionId
+    //  isLiked: true,
+    //  customerId: req.session.user.userId,
+    //  // createdAt: req.body.created_at,
+    //  //      updatedAt: req.body.created_at,
+    //      userServiceId : req.body.descriptionId
    
     // }).then(function(user) {
 
-    // 	res.redirect("/service1");
+    //  res.redirect("/service1");
          
     //     console.log(user);
        
@@ -170,13 +170,13 @@ var ratingController = {
         
     // })
 
-	},
+    },
 
-	dislikeRating : function(req, res){
+    dislikeRating : function(req, res){
 
-		console.log(req.body);
+        console.log(req.body);
 
-		console.log(req.body.created_at);
+        console.log(req.body.created_at);
 
 
         var sender = req.session.user.email;// sender address
@@ -185,11 +185,11 @@ var ratingController = {
         var message = "Recently, a user went onto our site and gave you a 'dislike' rating. At The Neighbor Network, we understand that some less than par business transactions can occur for many different reasons. We give our service providers two days to respond directly to the user in an attempt to correct the issue. The user will be prompted two days from now to finalize their rating, where they can keep the rating the same, and post what they have already written, (You don’t want that!) or change it as a result of you making things right with your customer. Here at The Neighbor Network, we want to keep business in our own neighborhoods, and keep our service providers and customers happy. Sincerely, the Neighbor Network."; // plain text body
 
 
-		db.userRating.findOne({
-			
-			where: {customerId: req.session.user.userId,
-					userServiceId: req.body.descriptionId
-					}
+        db.userRating.findOne({
+            
+            where: {customerId: req.session.user.userId,
+                    userServiceId: req.body.descriptionId
+                    }
             }).then(function(user){
 
                 console.log("user");
@@ -197,11 +197,11 @@ var ratingController = {
 
                 if (user == null || user == undefined){
 
-                		  ratingController.dislikeCreate(req, res, function(user){
+                          ratingController.dislikeCreate(req, res, function(user){
                                 
                                 
                                      if(!user.error){
-                                     	//email serviceProvider
+                                        //email serviceProvider
 
                                         console.log("after created");
 
@@ -209,8 +209,11 @@ var ratingController = {
 
                                         nodeMailer(sender, receiver, messageSubject, message,
                                         function(info){
+                                            var obj ={
+                                                currentUser :  req.session.user.firstName
+                                            }
 
-                                            res.render("dislikeMessage");
+                                            res.render("dislikeMessage", obj);
 
 
                                         });
@@ -219,7 +222,7 @@ var ratingController = {
                                      }else if (user.error) {
                                         console.log(user.error);
                                         //res.json({error: user.error});
-                                         res.render("/errorPage");
+                                         res.redirect("/errorPage");
                                         
                                      }
 
@@ -228,11 +231,11 @@ var ratingController = {
                  }
                 else if (user){
 
-                	ratingController.dislikeUpdate(req, res, function(user){
+                    ratingController.dislikeUpdate(req, res, function(user){
                                 
                                 
                                      if(!user.error){
-                                     	//email serviceProvider
+                                        //email serviceProvider
 
                                         console.log("after created");
 
@@ -241,7 +244,11 @@ var ratingController = {
                                         nodeMailer(sender, receiver, messageSubject, message,
                                         function(info){
 
-                                                res.render("dislikeMessage");
+                                              var obj ={
+                                                currentUser :  req.session.user.firstName
+                                            }
+
+                                            res.render("dislikeMessage", obj);
 
 
                                         });
@@ -250,7 +257,7 @@ var ratingController = {
                                      }else if (user.error) {
                                         console.log(user.error);
                                         //res.json({error: user.error});
-                                         res.render("/errorPage");
+                                       res.redirect("/errorPage");
                                         
                                      }
 
@@ -262,7 +269,7 @@ var ratingController = {
                         
             });
 
-	}
+    }
 }
 
 module.exports = ratingController;

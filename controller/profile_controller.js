@@ -17,7 +17,8 @@ module.exports = {
 	    	console.log(JSON.stringify(user.userServices, 2, null));
 
 	    		var userObject = {
-	      			currentUser: user
+	      			currentUserInfo: user,
+	      			currentUser : req.session.user.firstName
 	    	};
 
 	    	res.render("profile", userObject);
@@ -26,7 +27,8 @@ module.exports = {
 	       
 	   		 }).catch(function(error){
 	        console.log(error);
-	        res.json({error: "We are experiencing technical difficulty. Please try again..."});
+	        res.redirect("/errorPage")
+
 
     });
 },
@@ -45,7 +47,7 @@ deleteAccount: function(req, res){
 
     	}).catch(function(error){
 	        console.log(error);
-	        res.json({error: "We are experiencing technical difficulty. Please try again..."});
+	        res.redirect("/errorPage")
 
     });
 

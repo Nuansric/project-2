@@ -43,7 +43,16 @@ app.post("/requestSms", signupLoginController.requestPhoneVerification);
 app.post("/createProfile", signupLoginController.verifyPhoneToken);
 
 app.get("/landing", loggedInCheck.requireLogin, function(req, res){
-    res.render("landing");
+    var obj ={
+		currentUser : req.session.user.firstName
+	}
+    res.render("landing", obj);
+});
+app.get("/errorPage", loggedInCheck.requireLogin, function(req, res){
+	var obj ={
+		currentUser : req.session.user.firstName
+	}
+    res.render("errorPage", obj);
 })
 
 }
