@@ -15,7 +15,7 @@
 
 
 body {
-	font-family:'Open Sans', Arial, sans-serif;
+	font-family:'Montserrat', sans-serif;
 	font-size:14px;
 	font-weight:300;
 	line-height:1.6em;
@@ -218,7 +218,7 @@ a:hover {
 	position: absolute;
 	right: 15%;
 	top: calc(50% - 150px);
-	font-size:40px;
+	font-size:90px;
 	left: 15%;
 	z-index: 10;
 	padding-bottom: 0px;
@@ -227,7 +227,7 @@ a:hover {
 }
 
 .carousel-caption  h2 {
-	font-size:60px;
+	font-size:90px;
 	color: #fff;
 }
 
@@ -248,10 +248,10 @@ a:hover {
 
 @media (max-width: 767px) {
     .carousel-caption  {
-      font-size: 18px;
+      font-size: 60px;
     }
     .carousel-caption h2, .carousel-caption  h2 span, .carousel-caption  p {
-    	font-size:18px;
+    	font-size:40px;
     }
 }
 
@@ -703,3 +703,14 @@ ul.social-network li a {
 	display:block;
 }
 
+#typed-strings{
+	font-family:'Montserrat', sans-serif;
+	font-size: 40px;
+	font-weight: 600;
+	text-align: center;
+}
+
+.carousel-caption h2 {
+    font-size: 90px;
+    color: #fff;
+}
