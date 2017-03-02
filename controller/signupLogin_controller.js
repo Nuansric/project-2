@@ -2,15 +2,21 @@ var crypto = require('crypto');
 var db = require("../models");
 var geocode = require("../config/geoCode");
 
-var config = require('../config/authyConfig.js');
+
 var qs = require('qs');
 var request = require('request');
-var phoneReg = require('../public/lib/phone_verification')(config.API_KEY);
+
 var session = require('express-session');
 
 // https://github.com/seegno/authy-client
-const Client = require('authy-client').Client;
-const authy = new Client({key: config.API_KEY});
+
+
+if (env === "development"){
+    var config = require('../config/authyConfig.js');
+    var phoneReg = require('../public/lib/phone_verification')(config.API_KEY);
+    const Client = require('authy-client').Client;
+    const authy = new Client({key: config.API_KEY});
+}
 
 
 function hashPW(pwd) {
