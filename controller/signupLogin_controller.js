@@ -11,9 +11,9 @@ var session = require('express-session');
 // https://github.com/seegno/authy-client
 
 var env       = process.env.NODE_ENV || 'development';
+const Client = require('authy-client').Client;
 if (env === "development"){
     var config = require('../config/authyConfig.js');
-    const Client = require('authy-client').Client;
     var phoneReg = require('../public/lib/phone_verification')(config.API_KEY);
     const authy = new Client({key: config.API_KEY});
 }else{
