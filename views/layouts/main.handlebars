@@ -43,8 +43,15 @@
 								<!-- Need to add the code that will take these buttons, and once they are clicked on, will show the different handlebars that will dynamically insert inside of this page. -->
 								<li role="presentation"><a href="/search">Search</a></li>
 								<li role="presentation"><a href="/addService">Add Service</a></li>
-								<li role="presentation"><a href="/viewProfile">View Profile</a></li>
-								<li role="presentation"><a href="/signout">Sign Out</a></li>
+								<li class="dropdown" role="presentation">
+					              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">WELCOME<span class="caret"></span></a>
+					              <ul class="dropdown-menu" aria-labelledby="themes">
+					              <li role="presentation"><a href="/viewProfile">View Profile</a></li>
+									<li role="presentation"><a href="/signout">Sign Out</a></li>
+					                
+              					</ul>
+           						</li>
+								
 								<!-- <li role="presentation">
 									<select data-placeholder="" class="userInput" name="userStuff">
 										<option value=""><a href="/viewProfile">View Profile</a></option>

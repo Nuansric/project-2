@@ -40,15 +40,15 @@ checkUserName : function(req, res){
                 console.log("user");
                 console.log(user);
 
-                if (user.userName == null || user.userName == undefined) {
+                if (user.length > 0) {
 
-                         res.json({error: "Username is Available!"});
                          
+                          res.json({error: "Username is not available! Please pick a new one!"});
               
                  }
-                else if (user){
+                else {
                     
-                    res.json({error: "Username is not available! Please pick a new one!"});
+                    res.json({error: "Username is Available!"});
                     
                 }
                         
@@ -312,7 +312,7 @@ loggedIn : function(req, res){
 
                     console.log("res.session.user");
                     console.log(req.session.user);
-
+                    console.log(res.locals.user);
 
                     res.send('/landing');
 
@@ -337,15 +337,5 @@ loggedIn : function(req, res){
 
 }
 
-function createSession(req, res, user) {
-    req.session.regenerate(function () {
-        req.session.loggedIn = true;
-        req.session.userId = user.userId;
-        req.session.username = user.userName;
-        req.session.longitude = user.longitude;
-        req.session.latitude = user.latitude;
-        res.status(200).json();
-    });
-}
 
 module.exports = signupLogin;
