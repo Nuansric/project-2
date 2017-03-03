@@ -2,7 +2,7 @@ $(function(){
 
         $("#typed").typed({
             strings: ["a plumber?", "a real estate agent?", "a tutor?", "a dog walker?"],
-            stringsElement: $('#typed-strings'),
+            // stringsElement: $('#typed-strings'),
             typeSpeed: 30,
             backDelay: 500,
             loop: false,
@@ -22,3 +22,5 @@ $(function(){
     function newTyped(){ /* A new typed object */ }
 
     function foo(){ console.log("Callback"); }
+
+//
