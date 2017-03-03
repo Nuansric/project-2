@@ -3,7 +3,7 @@ $(function(){
         $("#typed").typed({
             strings: ["tutor","lawyer","plumber", "dog walker","mechanic","Neighbor Network!"],
             // stringsElement: $('#typed-strings'),
-            typeSpeed: 30,
+            typeSpeed: 70,
             backDelay: 500,
             loop: false,
             contentType: 'html', // or text
