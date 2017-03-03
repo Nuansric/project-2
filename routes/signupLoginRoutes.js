@@ -15,13 +15,15 @@ app.get("/", function(req, res) {
 
     res.sendFile(path.join(__dirname + "/../public/home.html"));
 
-    console.log(req.session.user);
+    
 });	
 
 
 app.get("/signup", function(req, res) {
 
     res.sendFile(path.join(__dirname + "/../public/signup.html"));
+
+    loggedInCheck.alreadyLogIn(req, res);
 });	
 app.get("/login", function(req, res) {
 

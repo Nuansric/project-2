@@ -101,7 +101,7 @@ line height is 20px by default so add 30px top and bottom to equal the new .navb
 
   .caption {
     position: absolute;
-    top: 30%;
+    top: 15%;
     left: 0;
     width: 100%;
   }
@@ -116,24 +116,71 @@ line height is 20px by default so add 30px top and bottom to equal the new .navb
   font-size: 50px;
 }
 }
-
+/*ADDED*/
 @media only screen and (max-width : 640px){
     .caption {
     position: absolute;
-    top: 25%;
+    top: 15%;
     left: 0;
     width: 100%;
   }
 
   #findYour{
   color:#ffffff;
-  font-size: 40px;
+  font-size: 30px;
   }
 
   #typed{
   color: #ffffff;
-  font-size: 30px;
+  font-size: 25px;
   }
+
+}
+
+@media only screen and (max-width : 1025px){
+
+  .caption {
+    position: absolute;
+    top: 15%;
+    left: 0;
+    width: 100%;
+  }
+
+  #findYour{
+  color:#ffffff;
+  font-size: 50px;
+}
+
+#typed{
+  color: #ffffff;
+  font-size: 50px;
+}
+
+@media only screen and (max-width : 320px){
+    .caption {
+    position: absolute;
+    top: 35%;
+    left: 0;
+    width: 100%;
+  }
+
+  #findYour{
+  color:#ffffff;
+  font-size: 25px;
+  }
+
+  #typed{
+  color: #ffffff;
+  font-size: 20px;
+  }
+
+  .example3 .navbar-brand {
+  height: 60px;
+  width: 60px;
+}
+
+}
+/*END ADDED*/
 
 }
 /* EXAMPLE 8 - Center Background */
