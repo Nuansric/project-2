@@ -154,4 +154,33 @@ line height is 20px by default so add 30px top and bottom to equal the new .navb
 
 .navbar{
   text-transform: uppercase;
+
 }
+
+body{
+  font-family: 'Montserrat', sans-serif;
+}
+
+nav{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container{
+
+  font-family: 'Montserrat', sans-serif;
+}
+
+footer{
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+
+
+
+
+
+
+
+
+
