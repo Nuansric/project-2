@@ -9,50 +9,50 @@
 					<div class="panel-body" style="padding-bottom: 0px; text-align: center;">
 						<div class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.8s">
 							<h1 style="color:#f7b733" class="text-center">Profile Information</h1>
-<div class="row">
-							<div class="col-lg-3"></div>
-							<div class="col-lg-3 center-block">
-							<div style="text-align:left">
-								<p><b>Username: </b> {{currentUser.dataValues.userName}}</p>
-								<p><b>First Name: </b> {{currentUser.dataValues.firstName}}</p>
-								<p><b>Phone: </b> {{currentUser.dataValues.phone}}</p>
-								<p><b>City: </b> {{currentUser.dataValues.city}}</p>
-								<p><b>Zip Code: </b> {{currentUser.dataValues.zipCode}}</p>
-							</div>
-							</div>
-							<div class="col-lg-3 center-block">
-							<div style="text-align:left">
-								<p><b>Email: </b> {{currentUser.dataValues.email}}</p>
-								<p><b>Address Line 1: </b> {{currentUser.dataValues.address_1}}</p>
-								<p><b>Address Line 2: </b> {{currentUser.dataValues.address_2}}</p>
-								<p><b>State: </b> {{currentUser.dataValues.state}}</p>
-								<p><b>Country: </b> {{currentUser.dataValues.country}}</p>
-							</div>
+							<div class="row">
+								<div class="col-lg-3"></div>
+								<div class="col-lg-3 center-block">
+									<div style="text-align:left">
+										<p><b>Username: </b> {{currentUser.dataValues.userName}}</p>
+										<p><b>First Name: </b> {{currentUser.dataValues.firstName}}</p>
+										<p><b>Phone: </b> {{currentUser.dataValues.phone}}</p>
+										<p><b>City: </b> {{currentUser.dataValues.city}}</p>
+										<p><b>Zip Code: </b> {{currentUser.dataValues.zipCode}}</p>
+									</div>
+								</div>
+								<div class="col-lg-3 center-block">
+									<div style="text-align:left">
+										<p><b>Email: </b> {{currentUser.dataValues.email}}</p>
+										<p><b>Address Line 1: </b> {{currentUser.dataValues.address_1}}</p>
+										<p><b>Address Line 2: </b> {{currentUser.dataValues.address_2}}</p>
+										<p><b>State: </b> {{currentUser.dataValues.state}}</p>
+										<p><b>Country: </b> {{currentUser.dataValues.country}}</p>
+									</div>
 
+								</div>
+								<div class="col-lg-3"></div>
+								<br><br>
 							</div>
-							<div class="col-lg-3"></div>
-							<br><br>
-</div>
-											<div class="col-lg-12 center-block">
+							<div class="col-lg-12 center-block">
 
-						<h1 style="color:#f7b733" class="text-center">Services You Offer</h1>
-						
-							{{#each currentUser.userServices}}
-							<div class="col-lg-3"></div>
-							<div class="col-lg-6 text-center"><br>
-								<b>Service Description:</b>  {{this.description}}
-								<br>
-								<b>Discount Offer:</b> {{this.discount}}
+								<h1 style="color:#f7b733" class="text-center">Services You Offer</h1>
+								
+								{{#each currentUser.userServices}}
+								<div class="col-lg-3"></div>
+								<div class="col-lg-6 text-center"><br>
+									<b>Service Description:</b>  {{this.description}}
+									<br>
+									<b>Discount Offer:</b> {{this.discount}}
+								</div>
+								<div class="col-lg-3"></div>
+								{{/each}}
+								
+
+								<br><br>
+								<form action="/delete?_method=DELETE" method="POST">
+									<button type="submit" class="btn btn-lg btn-danger" id="deleteButton">DELETE ACCOUNT</button>
+								</form>
 							</div>
-							<div class="col-lg-3"></div>
-							{{/each}}
-						
-
-					<br><br>
-					<form action="/delete?_method=DELETE" method="POST">
-						<button type="submit" class="btn btn-lg btn-danger" id="deleteButton">DELETE ACCOUNT</button>
-					</form>
-					</div>
 						</div>
 
 					</div>

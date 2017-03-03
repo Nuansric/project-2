@@ -218,7 +218,7 @@ a:hover {
 	position: absolute;
 	right: 15%;
 	top: calc(50% - 170px);
-	font-size:90px;
+	font-size:100px;
 	left: 15%;
 	z-index: 10;
 	padding-bottom: 0px;
@@ -227,7 +227,7 @@ a:hover {
 }
 
 .carousel-caption  h2 {
-	font-size:90px;
+	font-size:100px;
 	color: #fff;
 }
 
@@ -710,6 +710,6 @@ ul.social-network li a {
 	}
 
 .carousel-caption h2 {
-    font-size: 90px;
+    font-size: 100px;
     color: #fff;
 }
