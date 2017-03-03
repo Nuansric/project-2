@@ -38,11 +38,11 @@
                                        
                                          
                                         <div class="col-lg-4">
-                                        <form action="/dislike" method="POST" style="margin-bottom: 0px; margin-top: 10px;">
+                                        <form action="/dislikePolicy" method="POST" style="margin-bottom: 0px; margin-top: 10px;">
                                         <input type="hidden" name="serviceProviderEmail" value="{{this.email}}">
                                         <input type="hidden" name="descriptionId" value="{{this.descriptionId}}">
                                         <button style="border: none; background-color: white;"><img style="width: 25%; height: 25%; display: block; margin:auto;" src="img/thumbDown.jpg"></button>
-                                       <!--  <button type="submit">Dislike</button> -->
+                                       
                                         <p style="text-align: center"><b>Dislikes: </b> {{this.disLikeCount}}</p>
                                         </form>
                                         
@@ -51,7 +51,6 @@
                                       <div class="col-lg-4">
                                         <form action="/leaveMessage" method="POST" style="margin-bottom: 0px; margin-top: 10px;">
                                         <input type="hidden" name="receiverId" value="{{this.userId}}">
-                                       <!--  <input type="hidden" name="senderId" value="{{locals.user.userId}}"> -->
                                         <input type="hidden" name="receiverEmail" value="{{this.email}}">
                                         <button style="border: none; background-color: white;"><img style="width: 25%; height: 25%; display: block; margin:auto;" src="img/mail.jpg"></button>
                                         <p style="text-align: center"><b>Contact Service Provider</b></p>

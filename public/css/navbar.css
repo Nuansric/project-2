@@ -154,33 +154,13 @@ line height is 20px by default so add 30px top and bottom to equal the new .navb
 
 .navbar{
   text-transform: uppercase;
-
 }
 
-body{
-  font-family: 'Montserrat', sans-serif;
+.nav>li>a:hover, .nav>li>a:focus{
+  background-color:#f7b733;
+  
 }
 
-nav{
-  font-family: 'Montserrat', sans-serif;
+a:hover, a:focus {
+  color: #ffffff;
 }
-
-.container{
-
-  font-family: 'Montserrat', sans-serif;
-}
-
-footer{
-  font-family: 'Montserrat', sans-serif;
-}
-
-
-
-
-
-
-
-
-
-
-

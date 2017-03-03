@@ -60,7 +60,7 @@ CREATE PROCEDURE getDistance( USERID INTEGER(10), LONGITUDE1 DECIMAL(11,8), LATI
 			from userRatings ur
 			where ur.userServiceId = us.id
 			AND ur.isLiked = 0 
-			AND (TIMESTAMPDIFF(MINUTE,  CURRENT_TIMESTAMP , ur.created_at )  - 300) > 2880
+			AND (TIMESTAMPDIFF(MINUTE,  CURRENT_TIMESTAMP , ur.updatedAt )  - 300) > 2880
 	) as disLikeCount 
 	 FROM userProfiles
 	INNER JOIN userServices us on us.`userProfileUserId` = userProfiles.`userId`
