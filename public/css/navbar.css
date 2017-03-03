@@ -66,6 +66,22 @@ line height is 20px by default so add 30px top and bottom to equal the new .navb
 }
 
 
+.caption {
+    position: absolute;
+    top: calc(50% - 150px);
+    left: 0;
+    width: 100%;
+}
+
+#findYour{
+  color:#ffffff;
+  font-size: 80px;
+}
+
+#typed{
+  color: #ffffff;
+  font-size: 80px;
+}
 
 
 
@@ -77,14 +93,49 @@ line height is 20px by default so add 30px top and bottom to equal the new .navb
   left: 50%;
   position: absolute;
 }
-.example-8 .navbar-brand>img {
-  height: 100%;
-  width: auto;
-  padding: 7px 14px; 
+  .example-8 .navbar-brand>img {
+    height: 100%;
+    width: auto;
+    padding: 7px 14px; 
+  }
+
+  .caption {
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width: 100%;
+  }
+
+  #findYour{
+  color:#ffffff;
+  font-size: 50px;
+}
+
+#typed{
+  color: #ffffff;
+  font-size: 50px;
 }
 }
 
+@media only screen and (max-width : 640px){
+    .caption {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    width: 100%;
+  }
 
+  #findYour{
+  color:#ffffff;
+  font-size: 40px;
+  }
+
+  #typed{
+  color: #ffffff;
+  font-size: 30px;
+  }
+
+}
 /* EXAMPLE 8 - Center Background */
 .example-8 .navbar-brand {
   background: url(http://res.cloudinary.com/candidbusiness/image/upload/v1455406304/dispute-bills-chicago.png) center / contain no-repeat;
@@ -154,6 +205,7 @@ line height is 20px by default so add 30px top and bottom to equal the new .navb
 
 .navbar{
   text-transform: uppercase;
+  margin-bottom: 0px;
   font-family: 'Montserrat', sans-serif;
 
 }
@@ -168,6 +220,7 @@ footer{
 
 .container{
   font-family: 'Montserrat', sans-serif;
+
 }
 
 .nav>li>a:hover, .nav>li>a:focus{
@@ -179,3 +232,4 @@ a:hover, a:focus {
   color: #ffffff;
 
 }
+
