@@ -1,6 +1,3 @@
-//AJAX Call to google map API
-
-// installing request npm package to receive data from URL
 var request = require("request");
 var env       = process.env.NODE_ENV || 'development';
 

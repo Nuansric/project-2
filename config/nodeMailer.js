@@ -10,7 +10,7 @@ console.log("inside node mailer");
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'rating.neighborhood.network@gmail.com',
+        user: 'donotreply.neighbor.network@gmail.com',
         pass: 'utCodingCamp'
     }
 });

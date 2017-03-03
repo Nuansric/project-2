@@ -11,21 +11,21 @@
 <h1 style="color:#f7b733" class="text-center">Profile Information</h1>
 
 
-<p><b>Username: </b> {{currentUserInfo.dataValues.userName}}</p>
-<p><b>First Name: </b> {{currentUserInfo.dataValues.firstName}}</p>
-<p><b>Address Line 1: </b> {{currentUserInfo.dataValues.address_1}}</p>
-<p><b>Address Line 2: </b> {{currentUserInfo.dataValues.address_2}}</p>
-<p><b>City: </b> {{currentUserInfo.dataValues.city}}</p>
-<p><b>State: </b> {{currentUserInfo.dataValues.state}}</p>
-<p><b>Zip Code: </b> {{currentUserInfo.dataValues.zipCode}}</p>
-<p><b>Country: </b> {{currentUserInfo.dataValues.country}}</p>
-<p><b>Phone: </b> {{currentUserInfo.dataValues.phone}}</p>
-<p><b>Email: </b> {{currentUserInfo.dataValues.email}}</p>
+<p><b>Username: </b> {{currentUser.dataValues.userName}}</p>
+<p><b>First Name: </b> {{currentUser.dataValues.firstName}}</p>
+<p><b>Address Line 1: </b> {{currentUser.dataValues.address_1}}</p>
+<p><b>Address Line 2: </b> {{currentUser.dataValues.address_2}}</p>
+<p><b>City: </b> {{currentUser.dataValues.city}}</p>
+<p><b>State: </b> {{currentUser.dataValues.state}}</p>
+<p><b>Zip Code: </b> {{currentUser.dataValues.zipCode}}</p>
+<p><b>Country: </b> {{currentUser.dataValues.country}}</p>
+<p><b>Phone: </b> {{currentUser.dataValues.phone}}</p>
+<p><b>Email: </b> {{currentUser.dataValues.email}}</p>
 
 <br><br>
 <h1 style="color:#f7b733" class="text-center">Services You Offer</h1>
 <ol>
-{{#each currentUserInfo.userServices}}
+{{#each currentUser.userServices}}
 <li><br>
 <b>Service Description:</b>  {{this.description}}
 <br>

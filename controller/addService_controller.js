@@ -7,7 +7,8 @@ console.log("logged in before render");
 	db.serviceOffer.findAll({}).then(function(data){
 
 		var serviceObject = {
-      			services: data
+      			services: data,
+            currentUser : req.session.user.firstName
     	};
     console.log("inside addService");
      console.log(req.session.user);
@@ -23,6 +24,7 @@ console.log("logged in before render");
 
 	}).catch(function(error){
           console.log(error);
+          res.redirect("/errorPage");
         //  res.json({error: "We are experiencing technical difficulty. Please try again..."});
 });
 },
@@ -51,6 +53,7 @@ console.log("inside addServiceDB");
    
   }).catch(function(error){
           console.log(error);
+          res.redirect("/errorPage");
         //  res.json({error: "We are experiencing technical difficulty. Please try again..."});
 });
 

@@ -46,4 +46,5 @@ config/config.json
 
 firebaseAuth.json
 
+**/.DS_Store
 

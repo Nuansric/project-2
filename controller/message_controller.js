@@ -8,7 +8,8 @@ module.exports = {
 	leaveMessage : function(req, res){
 
 		var objectRec = {
-			receiverInfo : req.body
+			receiverInfo : req.body,
+			currentUser : req.session.user.firstName
 		}
 
 		res.render("messageForm", objectRec);
