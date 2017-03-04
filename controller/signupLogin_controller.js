@@ -122,8 +122,14 @@ requestPhoneVerification : function (req, res/*, phone*/) {
             if (err) {
                 console.log('error creating phone reg request', err);
                 // res.status(500).json(err);
+                if(err.error_code == '60023'){
+
+                    res.json({error: "Please re-enter your code and try again!"});
+
+                }else{
                 res.json({error: err.message});
                 // isSuccess = false;
+                }
             } else {
                 console.log('Success register phone API call: ', response);
                 // res.status(200).json(response);
@@ -169,6 +175,13 @@ verifyPhoneToken : function (req, res){
                     //             console.log(req.session);
                      
                      console.log(coordinate);
+
+                     if(coordinate == "Not Found"){
+
+                            res.json({error: "Please verify that your address is correct!"});
+
+
+                     }else{
                                 
                                  var coordinates = coordinate;
 
@@ -190,45 +203,14 @@ verifyPhoneToken : function (req, res){
                                      }
 
                           });
-                                
+                      }          
   
                     });
-
-
-                          // signupLogin.createNewProfile(req, res, function(user){
-                                
-                                
-                          //            if(!user.error){
-
-                          //               console.log("after created");
-
-                          //               // console.log(req.session);
-                                        
-                          //               // createSession(req, res, user);
-
-                          //               // console.log(req.session.userId);
-
-                          //               res.send("/login");
-                                        
-                          //            }else if (user.error) {
-                          //               console.log(user.error);
-                          //               res.json({error: user.error});
-                                        
-                          //            }
-
-                          // });
-
-                            // if (profileCreated){
-
-                            //     res.render("landing");
-
-                            //     res.status(200).json(response);
-                            // }
                                 
                         }else {
                         
                         console.log('Failed in Confirm Phone request body: ', response.message);
-                        res.json({error: response.message});
+                        res.json({error: response.message + ". Please try again."});
                         }
             }
         });
