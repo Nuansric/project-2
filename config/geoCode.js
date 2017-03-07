@@ -29,15 +29,21 @@ var geocode = function(address, cb) {
         // convert the body to JSON. Body is a string originally
         var result = JSON.parse(body);
 
+        if(result.results == undefined || result.results.length == 0 ){
         // store the values in a variable
+        var coordinates = "Not Found";
+        // cb function helps storing the value outside the callback function
+        // for the request query.
+        cb(coordinates);
+    }else{
+
         var coordinates = {
             latitude: result.results[0].geometry.location.lat,
             longitude: result.results[0].geometry.location.lng
         }
 
-        // cb function helps storing the value outside the callback function
-        // for the request query.
         cb(coordinates);
+    }
 
     });   
 };

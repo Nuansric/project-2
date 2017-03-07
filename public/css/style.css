@@ -218,7 +218,7 @@ a:hover {
 	position: absolute;
 	right: 15%;
 	top: calc(50% - 170px);
-	font-size:90px;
+	font-size:40px;
 	left: 15%;
 	z-index: 10;
 	padding-bottom: 0px;
@@ -227,7 +227,7 @@ a:hover {
 }
 
 .carousel-caption  h2 {
-	font-size:90px;
+	font-size:40px;
 	color: #fff;
 }
 
@@ -248,7 +248,7 @@ a:hover {
 
 @media (max-width: 767px) {
     .carousel-caption  {
-      font-size: 60px;
+      font-size: 40px;
     }
     .carousel-caption h2, .carousel-caption  h2 span, .carousel-caption  p {
     	font-size:40px;
@@ -710,6 +710,6 @@ ul.social-network li a {
 	}
 
 .carousel-caption h2 {
-    font-size: 90px;
+    font-size: 40px;
     color: #fff;
 }

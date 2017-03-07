@@ -3,14 +3,31 @@ var nodeMailer = require("../config/nodeMailer")
 
 
 var ratingController = {
+
+  dislikePolicy : function(req, res){
+
+
+    var obj = {
+      descriptionID: req.body.descriptionId,
+      currentUser :  req.session.user.firstName,
+      providerEmail : req.body.serviceProviderEmail
+  }
+
+        res.render("dislikeMessage", obj);
+
+
+
+  },
+
+
     likeCreate : function(req, res, cb){
         
     db.userRating.create({
 
         isLiked: true,
         customerId: req.session.user.userId,
-        // createdAt: req.body.created_at,
-     //     updatedAt: req.body.created_at,
+        createdAt: req.body.created_at,
+        updatedAt: req.body.created_at,
         userServiceId : req.body.descriptionId
    
     }).then(function(user) {
@@ -30,8 +47,8 @@ var ratingController = {
 
         isLiked: false,
         customerId: req.session.user.userId,
-        // createdAt: req.body.created_at,
-     //     updatedAt: req.body.created_at,
+        createdAt: req.body.created_at,
+        updatedAt: req.body.created_at,
         userServiceId : req.body.descriptionId
    
     }).then(function(user) {
@@ -49,6 +66,8 @@ var ratingController = {
         
     db.userRating.update({
       isLiked: true,
+      createdAt: req.body.created_at,
+      updatedAt: req.body.created_at
     }, {
       where: {
         customerId: req.session.user.userId,
@@ -68,9 +87,13 @@ var ratingController = {
     },
 
     dislikeUpdate : function(req, res, cb){
+
+  
         
     db.userRating.update({
       isLiked: false,
+      createdAt: req.body.created_at,
+      updatedAt: req.body.created_at
     }, {
       where: {customerId: req.session.user.userId,
             $and: [{userServiceId: req.body.descriptionId}]
@@ -174,10 +197,7 @@ var ratingController = {
 
     dislikeRating : function(req, res){
 
-        console.log(req.body);
-
-        console.log(req.body.created_at);
-
+      
 
         var sender = req.session.user.email;// sender address
         var receiver = req.body.serviceProviderEmail; // list of receivers
@@ -192,8 +212,6 @@ var ratingController = {
                     }
             }).then(function(user){
 
-                console.log("user");
-                console.log(user);
 
                 if (user == null || user == undefined){
 
@@ -209,11 +227,7 @@ var ratingController = {
 
                                         nodeMailer(sender, receiver, messageSubject, message,
                                         function(info){
-                                            var obj ={
-                                                currentUser :  req.session.user.firstName
-                                            }
-
-                                            res.render("dislikeMessage", obj);
+                                            res.redirect("/landing");
 
 
                                         });
@@ -243,12 +257,8 @@ var ratingController = {
 
                                         nodeMailer(sender, receiver, messageSubject, message,
                                         function(info){
-
-                                              var obj ={
-                                                currentUser :  req.session.user.firstName
-                                            }
-
-                                            res.render("dislikeMessage", obj);
+                                            
+                                            res.redirect("/landing");
 
 
                                         });

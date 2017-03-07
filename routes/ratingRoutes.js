@@ -9,6 +9,8 @@ app.post("/like", loggedInCheck.requireLogin, ratingController.likeRating);
 
 app.post("/dislike", loggedInCheck.requireLogin, ratingController.dislikeRating);
 
+app.post("/dislikePolicy", loggedInCheck.requireLogin, ratingController.dislikePolicy);
+
 
 
 
