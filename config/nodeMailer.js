@@ -1,3 +1,4 @@
+// initialize the nodemailer npm package.
 var nodemailer = require("nodemailer");
 
 var bunyan = require("bunyan");
@@ -32,13 +33,8 @@ transporter.sendMail(mailOptions, (error, info) => {
 
  		cb(info);
  		console.log('Message %s sent: %s', info.messageId, info.response);
-    	
-    	
-
     }
    
 });
-
-
 
 }

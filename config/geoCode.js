@@ -1,6 +1,8 @@
+// initilize the required npm packages
 var request = require("request");
 var env       = process.env.NODE_ENV || 'development';
 
+// development mode in node pulls the API key from keys.js file
 if (env === "development"){
     var APIKeys = require("./keys.js");
 }
@@ -17,6 +19,7 @@ var geoCodeURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
 
 var geocode = function(address, cb) {
 
+    // pulls the API key from specified location and assigns it to a variable
     var apiKey = googleCred;
 
     // concatenate different parts of URL to make a query
@@ -47,13 +50,5 @@ var geocode = function(address, cb) {
 
     });   
 };
-
-// call the geocode function, along with the callback function
-// var latLng = geocode(address, function(res){
-
-//     var coordinates = res;
-//     return coordinates;
-
-// });
 
 module.exports = geocode;

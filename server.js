@@ -46,22 +46,27 @@ app.use(session({
   ephemeral: true //cookie expires when the browser is closed
 }));
 
-
+//setting up the cookies
 app.use(function(req, res, next) {
+
+  // if there is user logged in
   if (req.session && req.session.user) {
+     // find the profile in the database
      db.userProfile.findOne({
         where:{userName: req.body.userName}
     }).then(function(user) {
       if (user) {
+        //assign the profile information to a currentUser variable
+        // so it can be called easily for other functions
       	var currentUser = {
-          userId: user.userId,
-      		userName : user.userName,
-      		firstName : user.firstName,
-      		longitude : user.longitude,
-      		latitude: user.latitude,
-      		email: user.email
+          userId: user.userId, //assigns the current user userID (database unique ID)
+      		userName : user.userName, //assigns the current user's username
+      		firstName : user.firstName, //assigns the current user's firstname
+      		longitude : user.longitude, //assigns current user's address longitudinal coordinate
+      		latitude: user.latitude, //assigns the current user's address latitudinal coordinate
+      		email: user.email // assigns the current user's e-mail
       	}
-        req.user = currentUser;
+        req.user = currentUser; 
         /// delete the password from the session
         req.session.user = currentUser;  //refresh the session value
         res.locals.user = currentUser;
@@ -83,6 +88,8 @@ require("./routes/profileRoutes.js")(app);
 require("./routes/messageRoutes.js")(app);
 require("./routes/ratingRoutes.js")(app);
 
+// starts the server with sequelize package. "force:false" doesn't truncate a table for every
+//time server is started.
 db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
