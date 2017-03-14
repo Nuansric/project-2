@@ -1,3 +1,6 @@
+<!--HTML for the page that shows the user that their "dislike" rating
+    is about to be conveyed to the service provider -->
+
 <div class="col-lg-2"></div>
 <div class="col-lg-8 text-center">
     <h1>Notice About Our Rating System</h1>
@@ -11,7 +14,7 @@
     <p>
         Sincerely, the Neighbor Network.
     </p>
-
+    <!--call the dislike route-->
     <form action="/dislike" method="POST">
         <input type="hidden" name="descriptionId" value="{{descriptionID}}">
         <input type="hidden" name="serviceProviderEmail" value="{{providerEmail}}">
