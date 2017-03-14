@@ -1,183 +1,76 @@
 var db = require("../models");
 
 
-
-
-/*
-IF FOUND
-
-Executing (default): CALL getDistance(1,-95.629029,29.6088509)
-[
-  [
-    {
-      "id": 2,
-      "name": "neighbor1",
-      "longitude": -95.627787,
-      "latitude": 29.6093574
-    },
-    {
-      "id": 4,
-      "name": "neighbor2",
-      "longitude": -95.628787,
-      "latitude": 29.6088507
-    }
-  ],
-  {
-    "fieldCount": 0,
-    "affectedRows": 0,
-    "insertId": 0,
-    "serverStatus": 2,
-    "warningCount": 0,
-    "message": "",
-    "protocol41": true,
-    "changedRows": 0
-  }
-]
-
-IF NOT
-
-Executing (default): CALL getDistance(3,-95.543191,29.558719)
-[
-  [],
-  {
-    "fieldCount": 0,
-    "affectedRows": 0,
-    "insertId": 0,
-    "serverStatus": 2,
-    "warningCount": 0,
-    "message": "",
-    "protocol41": true,
-    "changedRows": 0
-  }
-]
-
-
-
-*/
-
 module.exports = {
+	// the following function renders available services
+	renderSearchBar : function(req, res){
 
-renderSearchBar : function(req, res){
+		db.serviceOffer.findAll({}).then(function(data){
 
-  db.serviceOffer.findAll({}).then(function(data){
+			var serviceObject = {
+					services: data,
+					currentUser : req.session.user.firstName
+				};
 
-    var serviceObject = {
-            services: data,
-            currentUser : req.session.user.firstName
-      };
+			// console.log("inside search");
 
-    console.log("inside search");
+			// console.log(req.session.user);
+			// console.log(serviceObject);
 
-    console.log(req.session.user);
-      // console.log(serviceObject);
+			// console.log("HHHH"+ serviceObject.services[0].dataValues.serviceName);
 
-      // console.log("HHHH"+ serviceObject.services[0].dataValues.serviceName);
+			res.render("search", serviceObject);
+		});
+	},
+	// following function returns the results for the user specified service
+	findService : function(req, res){
+		// If the user does not input the category, set the cookie equal to its old value,
+		// else reset it to the new one that the user passed in
+		
+		// if req.body.serviceId == undefined
+		// then req.session.user.selectedService = req.session.user.selectedService
+		// else req.session.user.selectedService = req.body.serviceId.
+		req.session.user.selectedService = (req.body.serviceId == undefined?req.session.user.selectedService:req.body.serviceId);
+		var serviceID = req.session.user.selectedService;
 
-      res.render("search", serviceObject);
+		// console.log(req.session.user);
 
-  })
-},
+		// console.log(req.body);
 
-findService : function(req, res){
+		// store the values from the current session(cookies) to variables.
+		var currentUserId = req.session.user.userId;
 
+		var userLon = req.session.user.longitude;
 
+		var userLat = req.session.user.latitude;
 
-    req.session.user.selectedService = (req.body.serviceId == undefined?req.session.user.selectedService:req.body.serviceId);
-    var serviceID = req.session.user.selectedService;
+		// make a database query to find the user specified services using
+		// the user's coordinates. upon getting the results
+		db.getDistance(currentUserId, userLon, userLat, serviceID, function(result){
+			
+			// console.log("getDistance result");
+			// console.log(JSON.stringify(result, null, 2));
+			// if results are returned
+			if(result.length > 0){
+				// store the results in a variable
+				var serviceFound = {
+				
+				neighborFound: result,
+				serviceName: result[0].serviceName,
+				currentUser : req.session.user.firstName
+				};
+				// render them to the service page
+				res.render("service", serviceFound);
 
-    console.log(req.session.user);
-
-    console.log(req.body);
-
-    var currentUserId = req.session.user.userId;
-
-    var userLon = req.session.user.longitude;
-
-    var userLat = req.session.user.latitude;
-
-
-
-      db.getDistance(currentUserId, userLon, userLat, serviceID, function(result){
-          
-          console.log("getDistance result");
-          console.log(JSON.stringify(result, null, 2));
-/*
-        if(result.length > 0){
-            
-              for(var i=0; i < result.length; i++){
-
-                  userInDistance.push(result[i].userId);
-                    console.log("getDistance result array");
-                    console.log(userInDistance);
-            }
-          } 
-          else{
-            res.render("noService");
-          } 
-
-          */  
-            if(result.length > 0){
-
-
-                var serviceFound = {
-                  
-                  neighborFound: result,
-                  serviceName: result[0].serviceName,
-                  currentUser : req.session.user.firstName
-                };
-
-                 res.render("service", serviceFound);
-
-
-
-
-            }else{
-              var noServiceFound = {
-                  
-                  currentUser : req.session.user.firstName
-                };
-
-                res.render("noService", noServiceFound);
-            }
-
-
-
-
-});
-
-
-
-
-      //   if(userInDistance.length > 0){
-
-      //           db.userProfile.findAll({
-          
-        //      where: {
-        //              userId: userInDistance
-        //              },
-        //          include: [{
-        //                model: db.userService,
-        //                where: { serviceId: serviceID}
-        //        }]
-
-
-      //           }).then(function(result) {
-      //          var serviceFound = {
-      //            neighborFound: data
-      //           };
-
-      //        res.render("service", serviceFound);
-
-      //      });
-        
-        // }else{
-
-      //         var serviceFound = {
-      //             neighborFound: "None of your neighbor is a member of Neighborhood Network"
-      //            };
-
-      //         res.render("noService", serviceFound);
-
-        // }
-}
-}
+			}else{
+				// if results are not returned
+				var noServiceFound = {
+					
+					currentUser : req.session.user.firstName
+					};
+				// redirect user to "noService" page.
+				res.render("noService", noServiceFound);
+			}
+		});
+	}
+};

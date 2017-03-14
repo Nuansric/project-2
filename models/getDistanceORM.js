@@ -28,86 +28,81 @@ module.exports = function(sequelize, DataTypes){
 		type: sequelize.QueryTypes.RAW,
 		model: {
 
-userId:{
-  type: DataTypes.INTEGER,
-  autoIncrement: true,
-  primaryKey: true
-},
-userName: {
-    type: DataTypes.STRING
-    , unique: true
-    , allowNull: false,
-      // len is a validation that checks that our todo is between 1 and 140 characters
-      validate: {
-        len: [5, 15]
+      userId:{
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+      },
+      userName: {
+          type: DataTypes.STRING
+          , unique: true
+          , allowNull: false,
+            // len is a validation that checks that our todo is between 1 and 140 characters
+            validate: {
+              len: [5, 15]
+            }
+
+        },
+      firstName: {
+          type: DataTypes.STRING
+          , allowNull: false,
+            // len is a validation that checks that our todo is between 1 and 140 characters
+            validate: {
+              len: [1, 20]
+            }
+        },
+      phone: {
+          type: DataTypes.STRING
+          , unique: true
+          , allowNull: false,
+          validate: {
+              len: [10, 10]
+            }
+        },
+      email: {
+          type: DataTypes.STRING
+          , unique: true
+          , allowNull: false,
+          validate: {
+              len: [1, 50]
+            }
+
+        },
+      descriptionId:{
+          type: DataTypes.INTEGER,
+            allowNull: false   
+      },
+
+      description:{
+          type: DataTypes.TEXT,
+            allowNull: false
+          
+      },
+      discount:{
+          type: DataTypes.BOOLEAN,
+            allowNull: false
+          
+
+      },
+      serviceOfferServiceId:{
+          type: DataTypes.INTEGER,
+            allowNull: false
+
+      },
+      userProfileUserId:{
+          type: DataTypes.INTEGER,
+            allowNull: false
+        
+      },
+      serviceName:{
+          type: DataTypes.STRING,
+            allowNull: false
+        
       }
 
-  },
-firstName: {
-    type: DataTypes.STRING
-     , allowNull: false,
-      // len is a validation that checks that our todo is between 1 and 140 characters
-      validate: {
-        len: [1, 20]
-      }
-  },
-phone: {
-    type: DataTypes.STRING
-    , unique: true
-    , allowNull: false,
-    validate: {
-        len: [10, 10]
-      }
-  },
-email: {
-    type: DataTypes.STRING
-     , unique: true
-    , allowNull: false,
-    validate: {
-        len: [1, 50]
-      }
 
-  },
-descriptionId:{
-    type: DataTypes.INTEGER,
-      allowNull: false   
-},
-
-description:{
-		type: DataTypes.TEXT,
-    	allowNull: false
-    
-},
-discount:{
-		type: DataTypes.BOOLEAN,
-    	allowNull: false
-    
-
-},
-serviceOfferServiceId:{
-		type: DataTypes.INTEGER,
-    	allowNull: false
-
-},
-userProfileUserId:{
-		type: DataTypes.INTEGER,
-    	allowNull: false
-   
-},
-serviceName:{
-    type: DataTypes.STRING,
-      allowNull: false
-   
-}
-
-
-}
-
-
-
-
-	})
-		.then(function(data){
+  }
+	}).then(function(data){
 		  	cb(data);
 
 		  	

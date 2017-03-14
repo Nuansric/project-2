@@ -1,25 +1,19 @@
 module.exports = function(sequelize, DataTypes){
-var userService = sequelize.define("userService", {
+  var userService = sequelize.define("userService", {
 
-
-// userId:{
-//   type: DataTypes.INTEGER
-//   , allowNull: false
-
-// },
-description: {
-    type: DataTypes.STRING
-    , allowNull: false,
-     validate: {
-        len: [1, 255]
-      }
-  },
-discount: {
-    type: DataTypes.BOOLEAN
-    , allowNull: false
-  }
-}, 
-{
+    description: {
+        type: DataTypes.STRING
+        , allowNull: false
+        , validate: {
+            len: [1, 255]
+          }
+    },
+    discount: {
+        type: DataTypes.BOOLEAN
+        , allowNull: false
+    }
+  }, 
+  {
       // We're saying that we want our Author to have Posts
       classMethods: {
         associate: function(models) {
@@ -30,7 +24,7 @@ discount: {
             }
           });
         },
-     
+    
         associate: function(models) {
           // An Author (foreignKey) is required or a Post can't be made
           userService.belongsTo(models.userProfile, {
@@ -40,17 +34,12 @@ discount: {
           });
         }
       },
-  
-  timestamps: false
+      
+      timestamps: false
 
-}
+    });
 
-
-
-
-);
-
-return userService;
+  return userService;
 
 }
 

@@ -1,53 +1,86 @@
 <div class="wow bounceIn text-center" data-wow-offset="0" data-wow-delay="0.8s">
-<h1 style="color:" class="text-center">Add Service</h1>
+  <h1 style="color:" class="text-center">Add Service</h1>
 
-
-<form action="/addedService" method="POST">
-  <label for="">Service Category*</label>
-  <br>
-  <select data-placeholder="" class="chosen-select" name="serviceId" style="width:350px;">
-  <option value="">Select Service Category</option>
-    {{#each services}}
-      <option value="{{this.dataValues.serviceId}}">{{this.dataValues.serviceName}}</option>      
-    {{/each}}
-  </select>
-
-<br><br><br>
-
-   <div class="form-group">
-    <label for="des">Service Description*</label>
-    <br>
-    <div class="row">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-8">
+  {{!--form for the user to add a service--}}
+  <form action="/addedService" method="POST">
     
-    <small>Here, we give our service providers an opportunity to explain what they do. Think of this as an opportunity to differentiate yourself from others that provide similar services to yours. Maximum of 250 characters.</small>
+    <label for="">Service Category*</label>
+    
     <br>
- 
-    <textarea class="form-control" rows="10" id="des" name="description" placeholder="Describe the service that you offer here" maxlength="250"></textarea>
+    
+    <select data-placeholder="" class="chosen-select" name="serviceId" style="width:350px;">
+      
+      <option value="">
+        Select Service Category
+      </option>
+      
+      <!-- loop through each service offered and show it -->
+      {{#each services}}
+        <option value="{{this.dataValues.serviceId}}">
+          {{this.dataValues.serviceName}}
+        </option>      
+      {{/each}}
+    
+    </select> <!--class chosen-select ends here-->
 
-    </div>
-    <div class="col-lg-2"></div></div>
-  </div>
+    <br>
+    <br>
+    <br>
 
+    <div class="form-group">
+      
+      <label for="des">Service Description*</label>
+      
+      <br>
+      
+      <div class="row">
+        
+        <div class="col-lg-2"></div>
+        
+        <div class="col-lg-8">
+          
+          <small>
+            Here, we give our service providers an opportunity to explain what they do. Think of this as an opportunity to differentiate yourself from others that provide similar services to yours. Maximum of 250 characters.
+          </small>
+          
+          <br>
+  
+          <textarea class="form-control" rows="10" id="des" name="description" placeholder="Describe the service that you offer here" maxlength="250"></textarea>
+        
+        </div> <!-- div col-lg-8 ends here -->
+        
+        <div class="col-lg-2"></div>
+      
+      </div> <!-- div class row ends here -->
+    
+    </div> <!-- div form-group ends here -->
 
+    <div class="form-group">
+      <label for="slee">
+        Are you offering a discount specifically for your neighbors?
+      </label>
+    
+      <br>
+      
+      <div class="row">
+          <div class="col-lg-5"></div>
+          
+          <div class="col-lg-1">
+            <input type="radio" name="discount" value="1" checked> YES      
+          </div>
+          
+          <div class="col-lg-1">
+            <input type="radio" name="discount" value="0"> NO
+          </div>
+          
+          <div class="col-lg-5"></div>
+      
+      </div> <!-- div row ends here -->
+    
+    </div> <!-- form-group div ends here -->
 
-  <div class="form-group">
-    <label for="slee">Are you offering a discount specifically for your neighbors?</label><br>
-    <div class="row">
-         <div class="col-lg-5"></div>
-        <div class="col-lg-1">
-        <input type="radio" name="discount" value="1" checked> YES      
-        </div>
-        <div class="col-lg-1">
-        <input type="radio" name="discount" value="0"> NO
-        </div>
-         <div class="col-lg-5"></div>
-    </div>
-  </div>
+    <br>
 
-  <br>
-
-  <button type="submit" class="btn btn-lg btn-default">Add My Service</button>
-</form>
-</div>
+    <button type="submit" class="btn btn-lg btn-default">Add My Service</button>
+  </form> <!-- form ends here -->
+</div> <!-- wow bounce-in div ends here -->

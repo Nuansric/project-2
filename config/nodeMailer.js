@@ -37,4 +37,4 @@ transporter.sendMail(mailOptions, (error, info) => {
    
 });
 
-}
+};

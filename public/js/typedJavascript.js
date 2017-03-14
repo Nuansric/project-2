@@ -1,6 +1,7 @@
 $(function(){
-
+        //#typed is the ID of the section where the text needs to be pushed
         $("#typed").typed({
+            // string of the words that need to be animated
             strings: ["tutor","lawyer","plumber", "dog walker","mechanic","Neighbor Network!"],
             // stringsElement: $('#typed-strings'),
             typeSpeed: 70,
@@ -12,15 +13,15 @@ $(function(){
             callback: function(){ foo(); },
             resetCallback: function() { newTyped(); }
         });
+        // not used in the app.
+        // $(".reset").click(function(){
+        //     $("#typed").typed('reset');
+        // });
 
-        $(".reset").click(function(){
-            $("#typed").typed('reset');
-        });
+});
 
-    });
+function newTyped(){ /* A new typed object */ }
 
-    function newTyped(){ /* A new typed object */ }
-
-    function foo(){ console.log("Callback"); }
+// function foo(){ console.log("Callback"); }
 
 //

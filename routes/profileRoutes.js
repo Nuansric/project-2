@@ -6,12 +6,10 @@ var loggedInCheck = require("./loggedInCheck");
 
 module.exports = function(app) {
 
-app.get("/viewProfile", loggedInCheck.requireLogin, profileController.renderProfilePage);
-
-app.delete("/delete", loggedInCheck.requireLogin, profileController.deleteAccount);
-
-app.get("/signout", profileController.signout);
-
-
-
+    // view profile information
+    app.get("/viewProfile", loggedInCheck.requireLogin, profileController.renderProfilePage);
+    // delete the user from the database
+    app.delete("/delete", loggedInCheck.requireLogin, profileController.deleteAccount);
+    // log out.
+    app.get("/signout", profileController.signout);
 }

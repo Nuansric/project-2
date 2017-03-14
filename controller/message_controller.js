@@ -1,10 +1,12 @@
+//import database
 var db = require("../models");
-
+//import the functions from nodeMailer.js file
 var nodeMailer = require("../config/nodeMailer")
 
 
 module.exports = {
 
+	//leave message pulls the current user information and stores it in a variable
 	leaveMessage : function(req, res){
 
 		var objectRec = {
@@ -12,67 +14,31 @@ module.exports = {
 			currentUser : req.session.user.firstName
 		}
 
+		//render the message form page, where user can write a message.
 		res.render("messageForm", objectRec);
-		
 
 	},
 
+	// send message takes the user's information and the e-mail message, and passes it 
+	// to function in the nodeMailer.js file to be processed by nodemailer.
 	sendMessage : function(req, res){
 
-		console.log(req.body);
-// <<<<<<< HEAD
-	
-
-// 		// create reusable transporter object using the default SMTP transport
-// 		var transporter = nodemailer.createTransport({
-// 			service: 'gmail',
-// 			auth: {
-// 				user: 'rating.neighborhood.network@gmail.com',
-// 				pass: 'utCodingCamp'
-// 			}
-// 		});
-
-// 		// setup email data with unicode symbols
-// 		console.log(req.body.emailAttachment);
-
-// 		var mailOptions = {
-// 			from: req.session.user.email, // sender address
-// 			to: req.body.receiverEmail, // list of receivers
-// 			subject: req.body.subject, // Subject line
-// 			text: req.body.emailBody, // plain text body
-// 			// html: '<b>Hello world ?</b>' // html body
-// 		};
-
-// 		// send mail with defined transport object
-// 		transporter.sendMail(mailOptions, (error, info) => {
-// 			if (error) {
-// 				return console.log(error);
-// 			}
-			
-// 			else{
-// 				console.log('Message %s sent: %s', info.messageId, info.response);
-// 				res.redirect("/service1");
-// 			}
-		
-// 		});
-// 	}
-
-// =======
+		// console.log(req.body);
 
         var sender = req.session.user.email;// sender address
         var receiver = req.body.receiverEmail; // list of receivers
         var messageSubject = req.body.subject; // Subject line
         var message = req.body.emailBody; // plain text body
 
-       nodeMailer(sender, receiver, messageSubject, message,
+		// run nodemailer function
+    	nodeMailer(sender, receiver, messageSubject, message,
         function(info){
 
-            res.redirect("/service1")
-
+			//When the mail is send, redirect the user to the service page
+            res.redirect("/service1");
 
         });
 
- 
-}
-// >>>>>>> babec461f0cc037b00dc8f5d6634b80ff4c014dd
+	}
+
 };

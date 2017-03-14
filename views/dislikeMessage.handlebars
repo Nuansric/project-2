@@ -2,20 +2,25 @@
 <div class="col-lg-8 text-center">
     <h1>Notice About Our Rating System</h1>
 
-    <p style= "font-size: 15px"><b>We are about to inform the service provider that they have received an unfavorable rating.</b> At The Neighbor Network, we know ultimately our consumers want to have a great experience with the service provider. This is why we are giving them 2 days to make things right with you. If in two days, they do not change your mind, we will publish your rating automatically. However, if you find the service provider made things right, you are welcome to change your rating from a dislike to a like. Here at the Neighbor Network, we want to keep business in our own neighborhoods, and keep our service providers and users happy.</p>
+    <p style= "font-size: 15px">
+        <b>We are about to inform the service provider that they have received an unfavorable rating.</b> At The Neighbor Network, we know ultimately our consumers want to have a great experience with the service provider. This is why we are giving them 2 days to make things right with you. If in two days, they do not change your mind, we will publish your rating automatically. However, if you find the service provider made things right, you are welcome to change your rating from a dislike to a like. Here at the Neighbor Network, we want to keep business in our own neighborhoods, and keep our service providers and users happy.
+    </p>
+    
     <br/>
-    <p>Sincerely, the Neighbor Network.</p>
+    
+    <p>
+        Sincerely, the Neighbor Network.
+    </p>
 
     <form action="/dislike" method="POST">
-    <input type="hidden" name="descriptionId" value="{{descriptionID}}">
-    <input type="hidden" name="serviceProviderEmail" value="{{providerEmail}}">
+        <input type="hidden" name="descriptionId" value="{{descriptionID}}">
+        <input type="hidden" name="serviceProviderEmail" value="{{providerEmail}}">
 
-    <button type="submit" class="btn btn-lg btn-default">ACCEPT</button>
+        <button type="submit" class="btn btn-lg btn-default">ACCEPT</button>
 
-    </form>
-
-
+    </form> <!--form ends here -->
 
     <a href="/service1">Go Back to Search Result</a>
 </div>
+
 <div class="col-lg-2"></div>

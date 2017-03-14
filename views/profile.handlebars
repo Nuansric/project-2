@@ -9,7 +9,7 @@
 					<div class="panel-body" style="padding-bottom: 0px; text-align: center;">
 						<div class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.8s">
 							<h1 style="color:#f7b733" class="text-center">Profile Information</h1>
-							<div class="row">
+							<div class="row"> <!-- row for user's information -->
 								<div class="col-lg-3"></div>
 								<div class="col-lg-3 center-block">
 									<div style="text-align:left">
@@ -32,34 +32,33 @@
 								</div>
 								<div class="col-lg-3"></div>
 								<br><br>
-							</div>
+							</div> <!-- row for user's information ends here -->
 							<div class="col-lg-12 center-block">
 
 								<h1 style="color:#f7b733" class="text-center">Services You Offer</h1>
-								
+								<!-- Loop through current users each service along with it's description and show it -->
 								{{#each currentUserInfo.userServices}}
-								<div class="col-lg-3"></div>
-								<div class="col-lg-6 text-center"><br>
-									<b>Service Description:</b>  {{this.description}}
-									<br>
-									<b>Discount Offer:</b> {{this.discount}}
-								</div>
-								<div class="col-lg-3"></div>
+									<div class="col-lg-3"></div>
+										<div class="col-lg-6 text-center"><br>
+											<b>Service Description:</b>  {{this.description}}
+											<br>
+											<b>Discount Offer:</b> {{this.discount}}
+										</div>
+									<div class="col-lg-3"></div>
 								{{/each}}
 								
-
-								<br><br>
+								<br>
+								<br>
 								<form action="/delete?_method=DELETE" method="POST">
 									<button type="submit" class="btn btn-lg btn-danger" id="deleteButton">DELETE ACCOUNT</button>
-								</form>
-							</div>
-						</div>
+								</form> <!-- delete account form ends here -->
+							</div> <!-- col-lg-12 center-block ends here -->
+						</div> <!-- wow bounceIn ends here -->
 
-					</div>
+					</div> <!-- panel body ends here -->
 
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-</div>
+				</div> <!-- panel panel-default ends here -->
+			</div> <!-- column ends here --> 
+		</div> <!-- col-lg-10 ends here -->
+	</div> <!-- row ends here -->
+</div> <!-- container ends here -->
